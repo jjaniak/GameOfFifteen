@@ -126,7 +126,7 @@ public class Board {
         return new int[]{rowOfSearchedNumber, columnOfSearchedNumber};
     }
 
-    boolean isGameResolved() {
+    boolean isGameSolved() {
         return Arrays.deepEquals(this.configuration, Board.SOLVED_CONFIGURATION);
     }
 }
