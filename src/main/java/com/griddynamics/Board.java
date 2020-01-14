@@ -3,7 +3,7 @@ package com.griddynamics;
 public class Board {
     static final int[][] SOLVEDCONFIGURATION = { {1, 2, 3, 4}, {5, 6, 7, 8}, {9, 10, 11, 12}, {13, 14, 15, 0} };
     private int[][] configuration;
-    int rowWhereZero = 0, columnWhereZero = 0;
+    private int rowWhereZero = 0, columnWhereZero = 0;
 
 
     public Board() {
