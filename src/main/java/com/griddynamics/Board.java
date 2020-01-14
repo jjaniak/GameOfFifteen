@@ -44,66 +44,66 @@ public class Board {
 
 //    Movement in a direction mean that Zero tile is moving in that direction:
 
-    boolean moveRight(int[][] currentConfiguration) {
+    boolean moveRight() {
         if (columnWhereZero == 3) {
             System.out.println("It's impossible to move to the right");
             return false;
-        } else {
-            int valueOnRight = currentConfiguration[rowWhereZero][columnWhereZero + 1];
-            currentConfiguration[rowWhereZero][columnWhereZero + 1] = 0;
-            currentConfiguration[rowWhereZero][columnWhereZero] = valueOnRight;
-            columnWhereZero ++;
-            System.out.println("0 moved to the right");
-            return true;
         }
+
+        int valueOnRight = configuration[rowWhereZero][columnWhereZero + 1];
+        configuration[rowWhereZero][columnWhereZero + 1] = 0;
+        configuration[rowWhereZero][columnWhereZero] = valueOnRight;
+        columnWhereZero++;
+        System.out.println("0 moved to the right");
+        return true;
     }
 
-    boolean moveLeft(int[][] currentConfiguration) {
+    boolean moveLeft() {
         if (columnWhereZero == 0) {
             System.out.println("It's impossible to move to the left");
             return false;
-        } else {
-            int valueOnLeft = currentConfiguration[rowWhereZero][columnWhereZero - 1];
-            currentConfiguration[rowWhereZero][columnWhereZero - 1] = 0;
-            currentConfiguration[rowWhereZero][columnWhereZero] = valueOnLeft;
-            columnWhereZero --;
-            System.out.println("0 moved to the left");
-            return true;
         }
+
+        int valueOnLeft = configuration[rowWhereZero][columnWhereZero - 1];
+        configuration[rowWhereZero][columnWhereZero - 1] = 0;
+        configuration[rowWhereZero][columnWhereZero] = valueOnLeft;
+        columnWhereZero--;
+        System.out.println("0 moved to the left");
+        return true;
     }
 
-    boolean moveUp(int[][] currentConfiguration) {
+    boolean moveUp() {
         if (rowWhereZero == 0) {
             System.out.println("It's impossible to move up");
             return false;
-        } else {
-            int valueUp = currentConfiguration[rowWhereZero - 1][columnWhereZero];
-            currentConfiguration[rowWhereZero - 1][columnWhereZero] = 0;
-            currentConfiguration[rowWhereZero][columnWhereZero] = valueUp;
-            rowWhereZero --;
-            System.out.println("0 moved up");
-            return true;
         }
+
+        int valueUp = configuration[rowWhereZero - 1][columnWhereZero];
+        configuration[rowWhereZero - 1][columnWhereZero] = 0;
+        configuration[rowWhereZero][columnWhereZero] = valueUp;
+        rowWhereZero--;
+        System.out.println("0 moved up");
+        return true;
     }
 
-    boolean moveDown(int[][] currentConfiguration) {
+    boolean moveDown() {
         if (rowWhereZero == 3) {
             System.out.println("It's impossible to move down");
             return false;
-        } else {
-            int valueDown = currentConfiguration[rowWhereZero + 1][columnWhereZero];
-            currentConfiguration[rowWhereZero + 1][columnWhereZero] = 0;
-            currentConfiguration[rowWhereZero][columnWhereZero] = valueDown;
-            rowWhereZero ++;
-            System.out.println("0 moved down");
-            return true;
         }
+
+        int valueDown = configuration[rowWhereZero + 1][columnWhereZero];
+        configuration[rowWhereZero + 1][columnWhereZero] = 0;
+        configuration[rowWhereZero][columnWhereZero] = valueDown;
+        rowWhereZero++;
+        System.out.println("0 moved down");
+        return true;
     }
 
-    void findWhereZero(int [][] currentConfiguration) {
+    void findWhereZero(int [][] configuration) {
         for (int i = 0; i < 4; i++) {
             for (int j = 0; j < 4; j++) {
-                if (currentConfiguration[i][j] == 0) {
+                if (configuration[i][j] == 0) {
                     this.rowWhereZero = i;
                     this.columnWhereZero = j;
                     break;
@@ -112,11 +112,11 @@ public class Board {
         }
     }
 
-    int[] findWhereNumber(int [][] currentConfiguration, int numberWeLookFor) {
+    int[] findWhereNumber(int [][] configuration, int numberWeLookFor) {
         int rowOfSearchedNumber = 0, columnOfSearchedNumber = 0;
         for (int i = 0; i < 4; i++) {
             for (int j = 0; j < 4; j++) {
-                if (currentConfiguration[i][j] == numberWeLookFor) {
+                if (configuration[i][j] == numberWeLookFor) {
                     rowOfSearchedNumber = i;
                     columnOfSearchedNumber = j;
                     break;
