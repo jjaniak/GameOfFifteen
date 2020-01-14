@@ -14,10 +14,9 @@ public class GameSolver {
 //        Board solvedBoard = new Board(Board.SOLVEDCONFIGURATION);
         Board board = new Board(new int[][]{ {11, 13, 2, 4}, {10, 6, 7, 5}, {9, 8, 1, 12}, {3, 14, 15, 0} });
 
-        board.findWhereZero(board.getConfiguration());
         printBoardToConsole(board);
 
-        board.moveLeft(board.getConfiguration());
+        board.moveLeft();
         printBoardToConsole(board);
 
         printBoardToFile("src/test/resources/file.txt", board);
