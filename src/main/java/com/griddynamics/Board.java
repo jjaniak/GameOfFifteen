@@ -1,5 +1,7 @@
 package com.griddynamics;
 
+import java.util.Arrays;
+
 public class Board {
     static final int[][] SOLVEDCONFIGURATION = { {1, 2, 3, 4}, {5, 6, 7, 8}, {9, 10, 11, 12}, {13, 14, 15, 0} };
     private int[][] configuration;
@@ -122,5 +124,9 @@ public class Board {
             }
         }
         return new int[]{rowOfSearchedNumber, columnOfSearchedNumber};
+    }
+
+    boolean isGameResolved() {
+        return Arrays.deepEquals(this.configuration, Board.SOLVED_CONFIGURATION);
     }
 }
