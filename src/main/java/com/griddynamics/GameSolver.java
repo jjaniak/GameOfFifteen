@@ -24,7 +24,9 @@ public class GameSolver {
     }
 
     static void printBoardToFile(String stringPath, Board board) {
-        try(BufferedWriter writer = Files.newBufferedWriter(Paths.get(stringPath), StandardOpenOption.APPEND)) {
+        try(BufferedWriter writer = Files.newBufferedWriter(Paths.get(stringPath),
+                StandardOpenOption.CREATE,
+                StandardOpenOption.APPEND)) {
             writer.write(board.toString());
         } catch (IOException ex) {
             ex.printStackTrace();
