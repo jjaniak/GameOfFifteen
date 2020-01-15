@@ -14,10 +14,10 @@ public class GameSolver {
 //        Board solvedBoard = new Board(Board.SOLVEDCONFIGURATION);
         Board board = new Board(new int[][]{ {11, 13, 2, 4}, {10, 6, 7, 5}, {9, 8, 1, 12}, {3, 14, 15, 0} });
 
-        printBoardToConsole(board);
+        System.out.println(board);
 
         board.moveLeft();
-        printBoardToConsole(board);
+        System.out.println(board);
 
         printBoardToFile("src/test/resources/file.txt", board);
     }
@@ -31,9 +31,5 @@ public class GameSolver {
             ex.printStackTrace();
             System.err.format("IOException: %s%n", ex);
         }
-    }
-
-    static void printBoardToConsole(Board board) {
-        System.out.println(board.toString());
     }
 }
