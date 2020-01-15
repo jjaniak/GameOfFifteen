@@ -1,6 +1,7 @@
 package com.griddynamics;
 
 import java.util.Arrays;
+import java.util.Random;
 
 public class Board {
     static final int[][] SOLVEDCONFIGURATION = { {1, 2, 3, 4}, {5, 6, 7, 8}, {9, 10, 11, 12}, {13, 14, 15, 0} };
@@ -40,6 +41,20 @@ public class Board {
         }
         result.append(newLine);
         return result.toString();
+    }
+
+     void shuffleBoardConfiguration() {
+        Random random = new Random();
+        for (int i = configuration.length - 1; i > 0; i--) {
+            for (int j = configuration[i].length - 1; j > 0; j--) {
+                int m = random.nextInt(i + 1);
+                int n = random.nextInt(j + 1);
+
+                int temp = configuration[i][j];
+                configuration[i][j] = configuration[m][n];
+                configuration[m][n] = temp;
+            }
+        }
     }
 
 //    Movement in a direction mean that Zero tile is moving in that direction:
