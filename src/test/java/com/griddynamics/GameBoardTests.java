@@ -5,7 +5,7 @@ import static org.junit.jupiter.api.Assertions.*;
 
 public class GameBoardTests {
 
-    private final Board SolvedBoard = new Board(Board.SOLVED_CONFIGURATION);
+    private final Board solvedBoard = new Board(Board.SOLVED_CONFIGURATION);
 
     private final int[][] mixedConfiguration = new int[][]{
             {11, 15, 10,  8},
@@ -25,11 +25,11 @@ public class GameBoardTests {
 
     @Test
     public void checkIsGameSolvedMethod() {
-        SolvedBoard.moveUp();
-        assertFalse(SolvedBoard.isGameSolved());
+        solvedBoard.moveUp();
+        assertFalse(solvedBoard.isGameSolved());
 
-        SolvedBoard.moveDown();
-        assertTrue(SolvedBoard.isGameSolved());
+        solvedBoard.moveDown();
+        assertTrue(solvedBoard.isGameSolved());
 
     }
 
