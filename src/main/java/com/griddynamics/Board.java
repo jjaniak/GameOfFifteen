@@ -144,4 +144,8 @@ public class Board {
     boolean isGameSolved() {
         return Arrays.deepEquals(this.configuration, Board.SOLVED_CONFIGURATION);
     }
+
+    boolean isBoardIdentical(int[][] configuration) {
+        return Arrays.deepEquals(this.configuration, configuration);
+    }
 }
