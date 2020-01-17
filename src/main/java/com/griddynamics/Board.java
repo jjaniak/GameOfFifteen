@@ -156,6 +156,30 @@ public class Board {
         return new int[]{rowOfSearchedNumber, columnOfSearchedNumber};
     }
 
+    Position getTilePosition(int value) throws IllegalArgumentException {
+         if (value < 0 || value > 15)
+             throw new IllegalArgumentException(value + " is not a valid value");
+
+         for (int i = 0; i < 4; i++) {
+             for (int j = 0; j < 4; j++) {
+                 if (configuration[i][j] == value) {
+                     return new Position(i, j);
+                 }
+             }
+         }
+         // Should never happen
+         throw new IllegalArgumentException(value + " not found");
+    }
+
+//  Not sure if I'm going to need this method
+  /*  int getTileValue(Position t) {
+         return configuration[t.row][t.column];
+    }*/
+
+    int getTileValue(int r, int c) {
+         return configuration[r][c];
+    }
+
     boolean isGameSolved() {
         return Arrays.deepEquals(this.configuration, Board.SOLVED_CONFIGURATION);
     }
