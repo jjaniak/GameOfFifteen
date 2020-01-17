@@ -72,60 +72,60 @@ public class Board {
         }
     }
 
-//    Movement in a direction mean that Zero tile is moving in that direction:
+//    Movement in a direction means that empty tile (Zero) is moving in that direction:
 
     boolean moveRight() {
-        if (columnWhereZero == 3) {
+        if (emptyTile.column == 3) {
             System.out.println("It's impossible to move to the right");
             return false;
         }
 
-        int valueOnRight = configuration[rowWhereZero][columnWhereZero + 1];
-        configuration[rowWhereZero][columnWhereZero + 1] = 0;
-        configuration[rowWhereZero][columnWhereZero] = valueOnRight;
-        columnWhereZero++;
+        int valueOnRight = configuration[emptyTile.row][emptyTile.column + 1];
+        configuration[emptyTile.row][emptyTile.column + 1] = 0;
+        configuration[emptyTile.row][emptyTile.column] = valueOnRight;
+        emptyTile.column++;
         System.out.println("0 moved to the right");
         return true;
     }
 
     boolean moveLeft() {
-        if (columnWhereZero == 0) {
+        if (emptyTile.column == 0) {
             System.out.println("It's impossible to move to the left");
             return false;
         }
 
-        int valueOnLeft = configuration[rowWhereZero][columnWhereZero - 1];
-        configuration[rowWhereZero][columnWhereZero - 1] = 0;
-        configuration[rowWhereZero][columnWhereZero] = valueOnLeft;
-        columnWhereZero--;
+        int valueOnLeft = configuration[emptyTile.row][emptyTile.column - 1];
+        configuration[emptyTile.row][emptyTile.column - 1] = 0;
+        configuration[emptyTile.row][emptyTile.column] = valueOnLeft;
+        emptyTile.column--;
         System.out.println("0 moved to the left");
         return true;
     }
 
     boolean moveUp() {
-        if (rowWhereZero == 0) {
+        if (emptyTile.row == 0) {
             System.out.println("It's impossible to move up");
             return false;
         }
 
-        int valueUp = configuration[rowWhereZero - 1][columnWhereZero];
-        configuration[rowWhereZero - 1][columnWhereZero] = 0;
-        configuration[rowWhereZero][columnWhereZero] = valueUp;
-        rowWhereZero--;
+        int valueUp = configuration[emptyTile.row - 1][emptyTile.column];
+        configuration[emptyTile.row - 1][emptyTile.column] = 0;
+        configuration[emptyTile.row][emptyTile.column] = valueUp;
+        emptyTile.row--;
         System.out.println("0 moved up");
         return true;
     }
 
     boolean moveDown() {
-        if (rowWhereZero == 3) {
+        if (emptyTile.row == 3) {
             System.out.println("It's impossible to move down");
             return false;
         }
 
-        int valueDown = configuration[rowWhereZero + 1][columnWhereZero];
-        configuration[rowWhereZero + 1][columnWhereZero] = 0;
-        configuration[rowWhereZero][columnWhereZero] = valueDown;
-        rowWhereZero++;
+        int valueDown = configuration[emptyTile.row + 1][emptyTile.column];
+        configuration[emptyTile.row + 1][emptyTile.column] = 0;
+        configuration[emptyTile.row][emptyTile.column] = valueDown;
+        emptyTile.row++;
         System.out.println("0 moved down");
         return true;
     }
