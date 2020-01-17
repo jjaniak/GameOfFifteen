@@ -38,6 +38,7 @@ public class Board {
 
     public void setConfiguration(int[][] configuration) {
         this.configuration = configuration;
+        updateEmptyTilePosition();
     }
 
     @Override
