@@ -36,24 +36,25 @@ public class GameBoardTests {
     @Test
     public void moveRightCorrectly() {
         assertTrue(board.moveRight());
-        assertEquals(board.getConfiguration()[1][2], 0);
-        assertEquals(board.getConfiguration()[1][1], 7);
+        assertEquals(board.getTileValue(1, 2), 0);
+        assertEquals(board.getTileValue(1, 1), 7);
     }
 
     @Test
     public void moveRightIncorrectly() {
+
         board.moveRight();
         board.moveRight();
 
         assertFalse(board.moveRight());
-        assertEquals(board.getConfiguration()[1][3], 0);
+        assertEquals(board.getTileValue(1, 3), 0);
     }
 
     @Test
     public void moveLeftCorrectly() {
         assertTrue(board.moveLeft());
-        assertEquals(board.getConfiguration()[1][0], 0);
-        assertEquals(board.getConfiguration()[1][1], 2);
+        assertEquals(board.getTileValue(1, 0), 0);
+        assertEquals(board.getTileValue(1, 1), 2);
     }
 
     @Test
@@ -61,14 +62,14 @@ public class GameBoardTests {
         board.moveLeft();
 
         assertFalse(board.moveLeft());
-        assertEquals(board.getConfiguration()[1][0], 0);
+        assertEquals(board.getTileValue(1, 0), 0);
     }
 
     @Test
     public void moveUptCorrectly() {
         assertTrue(board.moveUp());
-        assertEquals(board.getConfiguration()[0][1], 0);
-        assertEquals(board.getConfiguration()[1][1], 15);
+        assertEquals(board.getTileValue(0, 1), 0);
+        assertEquals(board.getTileValue(1, 1), 15);
     }
 
     @Test
@@ -76,14 +77,14 @@ public class GameBoardTests {
         board.moveUp();
 
         assertFalse(board.moveUp());
-        assertEquals(board.getConfiguration()[0][1], 0);
+        assertEquals(board.getTileValue(0, 1), 0);
     }
 
     @Test
     public void moveDownCorrectly() {
         assertTrue(board.moveDown());
-        assertEquals(board.getConfiguration()[2][1], 0);
-        assertEquals(board.getConfiguration()[1][1], 4);
+        assertEquals(board.getTileValue(2, 1), 0);
+        assertEquals(board.getTileValue(1, 1), 4);
     }
 
     @Test
@@ -92,7 +93,7 @@ public class GameBoardTests {
         board.moveDown();
 
         assertFalse(board.moveDown());
-        assertEquals(board.getConfiguration()[3][1], 0);
+        assertEquals(board.getTileValue(3, 1), 0);
 
     }
 }
