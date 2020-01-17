@@ -16,12 +16,9 @@ public class Board {
 
     static final int[][] SOLVED_CONFIGURATION = { {1, 2, 3, 4}, {5, 6, 7, 8}, {9, 10, 11, 12}, {13, 14, 15, 0} };
     private int[][] configuration;
-    private int rowWhereZero = 0, columnWhereZero = 0;
+    private Position emptyTile;
 
 
-    public Board() {
-        this.configuration = new int[4][4];
-    }
     public Board(int[][] passedConfiguration) {
         this.configuration = new int[4][];
         for (int i = 0; i < 4; i++) {
