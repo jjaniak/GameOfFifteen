@@ -130,30 +130,8 @@ public class Board {
         return true;
     }
 
-    void findWhereZero(int [][] configuration) {
-        for (int i = 0; i < 4; i++) {
-            for (int j = 0; j < 4; j++) {
-                if (configuration[i][j] == 0) {
-                    this.rowWhereZero = i;
-                    this.columnWhereZero = j;
-                    break;
-                }
-            }
-        }
-    }
-
-    int[] findWhereNumber(int [][] configuration, int numberWeLookFor) {
-        int rowOfSearchedNumber = 0, columnOfSearchedNumber = 0;
-        for (int i = 0; i < 4; i++) {
-            for (int j = 0; j < 4; j++) {
-                if (configuration[i][j] == numberWeLookFor) {
-                    rowOfSearchedNumber = i;
-                    columnOfSearchedNumber = j;
-                    break;
-                }
-            }
-        }
-        return new int[]{rowOfSearchedNumber, columnOfSearchedNumber};
+    private void updateEmptyTilePosition() {
+        this.emptyTile = getTilePosition(0);
     }
 
     Position getTilePosition(int value) throws IllegalArgumentException {
