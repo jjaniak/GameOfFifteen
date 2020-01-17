@@ -30,7 +30,6 @@ public class GameBoardTests {
 
         solvedBoard.moveDown();
         assertTrue(solvedBoard.isGameSolved());
-
     }
 
     @Test
@@ -38,11 +37,14 @@ public class GameBoardTests {
         assertTrue(board.moveRight());
         assertEquals(board.getTileValue(1, 2), 0);
         assertEquals(board.getTileValue(1, 1), 7);
+
+        assertTrue(board.moveRight());
+        assertEquals(board.getTileValue(1, 3), 0);
+        assertEquals(board.getTileValue(1, 2), 5);
     }
 
     @Test
     public void moveRightIncorrectly() {
-
         board.moveRight();
         board.moveRight();
 
@@ -85,6 +87,10 @@ public class GameBoardTests {
         assertTrue(board.moveDown());
         assertEquals(board.getTileValue(2, 1), 0);
         assertEquals(board.getTileValue(1, 1), 4);
+
+        assertTrue(board.moveDown());
+        assertEquals(board.getTileValue(3, 1), 0);
+        assertEquals(board.getTileValue(2, 1), 14);
     }
 
     @Test
