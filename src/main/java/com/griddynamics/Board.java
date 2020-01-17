@@ -22,9 +22,12 @@ public class Board {
     public Board() {
         this.configuration = new int[4][4];
     }
-
-    public Board(int[][] configuration) {
-        this.configuration = configuration;
+    public Board(int[][] passedConfiguration) {
+        this.configuration = new int[4][];
+        for (int i = 0; i < 4; i++) {
+            this.configuration[i] = Arrays.copyOf(passedConfiguration[i], passedConfiguration[i].length);
+        }
+        updateEmptyTilePosition();
     }
 
     public int[][] getConfiguration() {
