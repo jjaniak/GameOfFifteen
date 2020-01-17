@@ -1,5 +1,6 @@
 package com.griddynamics;
 
+import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 
@@ -101,5 +102,18 @@ public class GameBoardTests {
         assertFalse(board.moveDown());
         assertEquals(board.getTileValue(3, 1), 0);
 
+    }
+
+    @Test
+    public void getValidTile() {
+        assertEquals(board.getTileValue(3, 1), 14);
+        assertEquals(board.getTileValue(0, 3), 8);
+    }
+
+    @Test
+    @DisplayName("Test checks if IllegalArgumentException is thrown")
+    public void getInvalidTile() {
+        assertThrows(IllegalArgumentException.class, ()-> board.getTilePosition(-1));
+        assertThrows(IllegalArgumentException.class, ()-> board.getTilePosition(16));
     }
 }
