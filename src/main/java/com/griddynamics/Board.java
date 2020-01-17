@@ -4,7 +4,17 @@ import java.util.Arrays;
 import java.util.Random;
 
 public class Board {
-    static final int[][] SOLVEDCONFIGURATION = { {1, 2, 3, 4}, {5, 6, 7, 8}, {9, 10, 11, 12}, {13, 14, 15, 0} };
+    public static class Position {
+        int row;
+        int column;
+
+        Position(int row, int column) {
+            this.row = row;
+            this.column = column;
+        }
+    }
+
+    static final int[][] SOLVED_CONFIGURATION = { {1, 2, 3, 4}, {5, 6, 7, 8}, {9, 10, 11, 12}, {13, 14, 15, 0} };
     private int[][] configuration;
     private int rowWhereZero = 0, columnWhereZero = 0;
 
