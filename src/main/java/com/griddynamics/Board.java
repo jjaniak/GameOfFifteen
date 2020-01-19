@@ -4,6 +4,7 @@ import java.util.Arrays;
 import java.util.Random;
 
 public class Board {
+
     public static class Position {
         int row;
         int column;
@@ -15,10 +16,10 @@ public class Board {
     }
 
     static final int[][] SOLVED_CONFIGURATION = {
-            {1, 2, 3, 4},
-            {5, 6, 7, 8},
-            {9, 10, 11, 12},
-            {13, 14, 15, 0}};
+            { 1,  2,  3,  4},
+            { 5,  6,  7,  8},
+            { 9, 10, 11, 12},
+            {13, 14, 15,  0}};
 
     private int[][] configuration;
     private Position emptyTile;
