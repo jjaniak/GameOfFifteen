@@ -105,14 +105,32 @@ public class GameBoardTests {
     }
 
     @Test
-    public void getValidTile() {
+    public void getTileValueGivenCorrectCoordinates() {
         assertEquals(board.getTileValue(3, 1), 14);
         assertEquals(board.getTileValue(0, 3), 8);
     }
 
     @Test
-    @DisplayName("Test checks if IllegalArgumentException is thrown")
-    public void getInvalidTile() {
+    @DisplayName("Test checks if IllegalArgumentException is thrown when given invalid position coordinates")
+    public void getTileValueGivenIncorrectCoordinates() {
+        Exception exception1 = assertThrows(IllegalArgumentException.class, ()-> board.getTileValue(0, -1));
+        System.out.println(exception1.getMessage());
+        assertEquals("-1 is not a valid value", exception1.getMessage());
+
+        Exception exception2 = assertThrows(IllegalArgumentException.class, ()-> board.getTileValue(16, 16));
+        System.out.println(exception2.getMessage());
+        assertEquals("16 and 16 are not valid values", exception2.getMessage());
+    }
+
+    @Test
+    public void getTilePositionGivenCorrectValue() {
+        assertEquals(board.getTilePosition(7).row, 1);
+        assertEquals(board.getTilePosition(7).column, 2);
+    }
+
+    @Test
+    @DisplayName("Test checks if IllegalArgumentException is thrown when given invalid value")
+    public void getTilePositionGivenIncorrectValue() {
         assertThrows(IllegalArgumentException.class, ()-> board.getTilePosition(-1));
         assertThrows(IllegalArgumentException.class, ()-> board.getTilePosition(16));
     }
