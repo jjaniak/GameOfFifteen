@@ -156,8 +156,15 @@ public class Board {
          return configuration[t.row][t.column];
     }*/
 
-    int getTileValue(int r, int c) {
-         return configuration[r][c];
+    int getTileValue(int r, int c) throws IllegalArgumentException {
+        if ((r <  0 || r > 3) && (c <  0 || c > 3))
+            throw new IllegalArgumentException(r + " and " + c + " are not valid values");
+        else if (r <  0 || r > 3)
+            throw new IllegalArgumentException(r + " is not a valid value");
+        else if (c <  0 || c > 3)
+            throw new IllegalArgumentException(c + " is not a valid value");
+
+        return configuration[r][c];
     }
 
     boolean isGameSolved() {
