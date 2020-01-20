@@ -18,12 +18,13 @@ public class GameLauncher {
                 {13, 14, 15, 12}};
 
         Board easyBoard = new Board(conf);
-//        When the game solving algorithm is improved, the following line can be uncommented;
+        Board copyBoard = new Board(conf);
+//        When the game solving algorithm is improved, the following line can be uncommented
 //        easyBoard.shuffleBoardConfiguration();
 
         printer.addToFile(path, "Initial configuration: " + nl + easyBoard);
 
-        ArrayList<Board.Movements> moves = solver.solve(easyBoard);
+        ArrayList<Board.Movements> moves = solver.solve(copyBoard);
 
         if (moves == null) {
 //          If it is impossible to solve the game, then -1 will be returned
