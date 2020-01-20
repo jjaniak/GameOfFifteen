@@ -9,7 +9,10 @@ import java.nio.file.StandardOpenOption;
 public class OutputProcessor {
     private static final String filePath = "";
 
-    static void printBoardToFile(String stringPath, Board board) {
+    static final String FILE_PATH = "src/test/resources/file.txt";
+    static final String NEW_LINE = System.getProperty("line.separator");
+
+    void addToFile(String stringPath, String input) {
         try(BufferedWriter writer = Files.newBufferedWriter(Paths.get(stringPath),
                 StandardOpenOption.CREATE,
                 StandardOpenOption.APPEND)) {
