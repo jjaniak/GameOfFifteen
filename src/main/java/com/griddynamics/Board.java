@@ -59,11 +59,6 @@ public class Board {
         return configuration;
     }
 
-    public void setConfiguration(int[][] configuration) {
-        this.configuration = configuration;
-        updateEmptyTilePosition();
-    }
-
     @Override
     public String toString() {
         StringBuilder result = new StringBuilder();
@@ -96,11 +91,11 @@ public class Board {
         }
     }
 
-//    Movement in a direction means that empty tile (Zero) is moving in that direction:
+//    Movement in a direction means that empty tile (zero value) is moving in that direction
+//    and the tile which place was taken goes to position previously occupied by empty tile.
 
     boolean moveRight() {
         if (emptyTile.column == 3) {
-            System.out.println("It's impossible to move to the right");
             return false;
         }
 
@@ -108,13 +103,11 @@ public class Board {
         configuration[emptyTile.row][emptyTile.column + 1] = 0;
         configuration[emptyTile.row][emptyTile.column] = valueOnRight;
         emptyTile.column++;
-        System.out.println("0 moved to the right");
         return true;
     }
 
     boolean moveLeft() {
         if (emptyTile.column == 0) {
-            System.out.println("It's impossible to move to the left");
             return false;
         }
 
@@ -122,13 +115,11 @@ public class Board {
         configuration[emptyTile.row][emptyTile.column - 1] = 0;
         configuration[emptyTile.row][emptyTile.column] = valueOnLeft;
         emptyTile.column--;
-        System.out.println("0 moved to the left");
         return true;
     }
 
     boolean moveUp() {
         if (emptyTile.row == 0) {
-            System.out.println("It's impossible to move up");
             return false;
         }
 
@@ -136,13 +127,11 @@ public class Board {
         configuration[emptyTile.row - 1][emptyTile.column] = 0;
         configuration[emptyTile.row][emptyTile.column] = valueUp;
         emptyTile.row--;
-        System.out.println("0 moved up");
         return true;
     }
 
     boolean moveDown() {
         if (emptyTile.row == 3) {
-            System.out.println("It's impossible to move down");
             return false;
         }
 
@@ -150,7 +139,6 @@ public class Board {
         configuration[emptyTile.row + 1][emptyTile.column] = 0;
         configuration[emptyTile.row][emptyTile.column] = valueDown;
         emptyTile.row++;
-        System.out.println("0 moved down");
         return true;
     }
 
@@ -172,11 +160,6 @@ public class Board {
          // Should never happen
          throw new IllegalArgumentException(value + " not found");
     }
-
-//  Not sure if I'm going to need this method
-  /*  int getTileValue(Position t) {
-         return configuration[t.row][t.column];
-    }*/
 
     int getTileValue(int r, int c) throws IllegalArgumentException {
         if ((r <  0 || r > 3) && (c <  0 || c > 3))
