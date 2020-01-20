@@ -25,13 +25,13 @@ public class Board {
         public String toString() {
             switch (this) {
                 case UP:
-                    return "up";
+                    return "Up";
                 case DOWN:
-                    return "down";
+                    return "Down";
                 case LEFT:
-                    return "left";
+                    return "Left";
                 case RIGHT:
-                    return "right";
+                    return "Right";
                 default:
                     return "invalid content";
             }
