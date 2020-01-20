@@ -39,6 +39,11 @@ public class Board {
     }
 
     private int[][] configuration;
+
+    public Position getEmptyTile() {
+        return emptyTile;
+    }
+
     private Position emptyTile;
 
 
