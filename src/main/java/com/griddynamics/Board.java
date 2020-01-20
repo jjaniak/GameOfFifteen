@@ -38,12 +38,6 @@ public class Board {
         }
     }
 
-    static final int[][] SOLVED_CONFIGURATION = {
-            { 1,  2,  3,  4},
-            { 5,  6,  7,  8},
-            { 9, 10, 11, 12},
-            {13, 14, 15,  0}};
-
     private int[][] configuration;
     private Position emptyTile;
 
@@ -190,40 +184,7 @@ public class Board {
         return configuration[r][c];
     }
 
-    boolean isGameSolved() {
-        return Arrays.deepEquals(this.configuration, Board.SOLVED_CONFIGURATION);
-    }
-
     boolean isBoardIdentical(int[][] configuration) {
         return Arrays.deepEquals(this.configuration, configuration);
-    }
-
-    boolean IsGameSolvable() {
-        int numberOfInversions = 0;
-
-//      In order to calculate the number of inversions:
-//          go through each element
-        for (int i = 0; i < 4; i++) {
-            for (int j = 0; j < 4; j++) {
-//          then compare the current element with all elements following it until the end
-                int l = j + 1;
-                for (int k = i; k < 4; k++) {
-                    for (; l < 4; l++) {
-                        if ((configuration[i][j] > configuration[k][l]) && (configuration[k][l] != 0)) {
-                            numberOfInversions++;
-                        }
-                    }
-                    l = 0;
-                }
-            }
-        }
-
-//      If empty tile is in 1st or 3rd row (index 0 or 2) and the number of inversions is odd  ---> then it's solvable
-//      If empty tile is in 2nd or 4th row (index 1 or 3) and the number of inversions is even ---> then it's solvable
-        if ((emptyTile.row % 2 == 0 && numberOfInversions % 2 == 1) || (emptyTile.row % 2 == 1 && numberOfInversions % 2== 0)) {
-            return true;
-        } else {
-            return false;
-        }
     }
 }
