@@ -5,6 +5,7 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.nio.file.StandardOpenOption;
+import java.util.ArrayList;
 
 public class OutputProcessor {
     private static final String filePath = "";
@@ -16,10 +17,32 @@ public class OutputProcessor {
         try(BufferedWriter writer = Files.newBufferedWriter(Paths.get(stringPath),
                 StandardOpenOption.CREATE,
                 StandardOpenOption.APPEND)) {
-            writer.write(board.toString());
-        } catch (IOException ex) {
-            ex.printStackTrace();
-            System.err.format("IOException: %s%n", ex);
+            writer.write(input);
+        } catch (IOException e) {
+            e.printStackTrace();
+            System.err.format("IOException: %s%n", e);
+        }
+    }
+
+    void addAllMovesToFile(ArrayList<Board.Movements> moves, Board board) {
+
+        for (Board.Movements m : moves) {
+            addToFile(FILE_PATH, m.toString() + NEW_LINE);
+            switch (m) {
+                case UP:
+                    board.moveUp();
+                    break;
+                case DOWN:
+                    board.moveDown();
+                    break;
+                case RIGHT:
+                    board.moveRight();
+                    break;
+                case LEFT:
+                    board.moveLeft();
+                    break;
+            }
+            addToFile(FILE_PATH, board.toString());
         }
     }
 }
