@@ -7,8 +7,7 @@ import java.nio.file.Paths;
 import java.nio.file.StandardOpenOption;
 import java.util.ArrayList;
 
-public class OutputProcessor {
-    private static final String filePath = "";
+class OutputProcessor {
 
     static final String FILE_PATH = "src/test/resources/file.txt";
     static final String NEW_LINE = System.getProperty("line.separator");
