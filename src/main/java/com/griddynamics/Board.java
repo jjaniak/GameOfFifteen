@@ -15,6 +15,29 @@ public class Board {
         }
     }
 
+    public enum Movements {
+        UP,
+        DOWN,
+        LEFT,
+        RIGHT;
+
+        @Override
+        public String toString() {
+            switch (this) {
+                case UP:
+                    return "up";
+                case DOWN:
+                    return "down";
+                case LEFT:
+                    return "left";
+                case RIGHT:
+                    return "right";
+                default:
+                    return "invalid content";
+            }
+        }
+    }
+
     static final int[][] SOLVED_CONFIGURATION = {
             { 1,  2,  3,  4},
             { 5,  6,  7,  8},
