@@ -25,15 +25,6 @@ public class GameBoardTests {
     }
 
     @Test
-    public void checkIsGameSolvedMethod() {
-        solvedBoard.moveUp();
-        assertFalse(solvedBoard.isGameSolved());
-
-        solvedBoard.moveDown();
-        assertTrue(solvedBoard.isGameSolved());
-    }
-
-    @Test
     public void moveRightCorrectly() {
         assertTrue(board.moveRight());
         assertEquals(board.getTileValue(1, 2), 0);
