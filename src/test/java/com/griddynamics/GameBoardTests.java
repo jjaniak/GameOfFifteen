@@ -1,27 +1,33 @@
 package com.griddynamics;
 
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
 import static org.junit.jupiter.api.Assertions.*;
 
 public class GameBoardTests {
 
-    private final Board solvedBoard = new Board(Board.SOLVED_CONFIGURATION);
+    private int[][] conf;
+    private Board board;
 
-    private final int[][] mixedConfiguration = new int[][]{
-            {11, 15, 10,  8},
-            { 2,  0,  7,  5},
-            { 9,  4,  1, 12},
-            { 3, 14, 13,  6} };
-    private Board board = new Board(mixedConfiguration);
+
+    @BeforeEach
+    public void setup(){
+         conf = new int[][]{
+                {11, 15, 10,  8},
+                { 2,  0,  7,  5},
+                { 9,  4,  1, 12},
+                { 3, 14, 13,  6} };
+         board = new Board(conf);
+    }
 
 
     @Test
     public void checkShufflingConfigurationWorks() {
-        assertTrue(board.isBoardIdentical(mixedConfiguration));
+        assertTrue(board.isBoardIdentical(conf));
 
         board.shuffleBoardConfiguration();
-        assertFalse(board.isBoardIdentical(mixedConfiguration));
+        assertFalse(board.isBoardIdentical(conf));
     }
 
     @Test
