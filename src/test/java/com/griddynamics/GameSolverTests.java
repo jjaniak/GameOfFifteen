@@ -65,16 +65,27 @@ public class GameSolverTests {
 
     @Test
     public void ShouldNotSolveWhenImpossible() {
-        int[][] conf = new int[][] {
+        int[][] conf1 = new int[][] {
                 { 1,  2,  3,  4},
                 { 5,  6,  7,  8},
                 { 9, 10, 11,  0},
                 {13, 15, 14, 12} };
 
-        Board board = new Board(conf);
-        ArrayList<Board.Movements> moves = solver.solve(board);
+        Board board1 = new Board(conf1);
+        ArrayList<Board.Movements> moves1 = solver.solve(board1);
 
-        assertNull(moves);
+        assertNull(moves1);
+
+        int[][] conf2 = new int[][] {
+                { 1,  2,  7,  3},
+                { 5,  0,  6,  4},
+                { 9, 10, 11,  8},
+                {13, 15, 14, 12} };
+
+        Board board2 = new Board(conf2);
+        ArrayList<Board.Movements> moves2 = solver.solve(board2);
+
+        assertNull(moves2);
     }
 
     @Test
