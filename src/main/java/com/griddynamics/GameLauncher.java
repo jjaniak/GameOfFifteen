@@ -7,9 +7,8 @@ public class GameLauncher {
     public static void main(String[] args) {
         GameSolver solver = new GameSolver();
 
-        OutputProcessor printer = new OutputProcessor();
-        String path = OutputProcessor.FILE_PATH;
-        String nl = OutputProcessor.NEW_LINE;
+        final String filePath = "src/test/resources/file.txt";
+        OutputProcessor printer = new FileOutputProcessor(filePath);
 
         int[][] conf = new int[][]{
                 { 1,  2,  3,  4},
@@ -22,18 +21,44 @@ public class GameLauncher {
 //        When the game solving algorithm is improved, the following line can be uncommented
 //        easyBoard.shuffleBoardConfiguration();
 
-        printer.addToFile(path, "Initial configuration: " + nl + easyBoard);
+        printer.append("Initial configuration: ");
+        printer.appendNewLine();
+        printer.append(easyBoard.toString());
 
         ArrayList<Board.Movements> moves = solver.solve(copyBoard);
 
         if (moves == null) {
-//          If it is impossible to solve the game, then -1 will be returned
-            printer.addToFile(path, "-1");
-        } else if (moves.size() == 0) {
-            printer.addToFile(path, "No movement was needed to solve the game." + nl + "The initial configuration was already solved");
+//          If it is impossible to solve the game, then -1 will be printed in the file
+            printer.append("-1");
         } else {
-        printer.addToFile(path, "Number of tiles movements needed to solve the game: " + moves.size() + nl + nl);
-        printer.addAllMovesToFile(moves, easyBoard);
+            printer.append("Number of tiles movements needed to solve the game: " + moves.size());
+            printer.appendNewLine();
+            printer.appendNewLine();
+
+            if (moves.size() == 0) {
+                printer.append("No movement was needed to solve the game as the initial configuration was already solved");
+            }
+
+//          recreating configurations from moves and appending them to the file
+            for (Board.Movements m : moves) {
+                printer.append(m.toString());
+                printer.appendNewLine();
+                switch (m) {
+                    case UP:
+                        easyBoard.moveUp();
+                        break;
+                    case DOWN:
+                        easyBoard.moveDown();
+                        break;
+                    case RIGHT:
+                        easyBoard.moveRight();
+                        break;
+                    case LEFT:
+                        easyBoard.moveLeft();
+                        break;
+                }
+                printer.append(easyBoard.toString());
+            }
         }
     }
 }
