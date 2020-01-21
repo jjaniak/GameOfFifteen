@@ -94,7 +94,29 @@ public class Board {
 //    Movement in a direction means that empty tile (zero value) is moving in that direction
 //    and the tile which place was taken goes to position previously occupied by empty tile.
 
-    boolean moveRight() {
+    boolean move(Movements direction) {
+        boolean isPossible = false;
+
+        switch (direction) {
+            case RIGHT:
+                isPossible = moveRight();
+                break;
+            case LEFT:
+                isPossible = moveLeft();
+                break;
+            case UP:
+                isPossible = moveUp();
+                break;
+            case DOWN:
+                isPossible = moveDown();
+                break;
+        }
+        return isPossible;
+    }
+
+
+
+    private boolean moveRight() {
         if (emptyTile.column == 3) {
             return false;
         }
@@ -106,7 +128,7 @@ public class Board {
         return true;
     }
 
-    boolean moveLeft() {
+    private boolean moveLeft() {
         if (emptyTile.column == 0) {
             return false;
         }
@@ -118,7 +140,7 @@ public class Board {
         return true;
     }
 
-    boolean moveUp() {
+    private boolean moveUp() {
         if (emptyTile.row == 0) {
             return false;
         }
@@ -130,7 +152,7 @@ public class Board {
         return true;
     }
 
-    boolean moveDown() {
+    private boolean moveDown() {
         if (emptyTile.row == 3) {
             return false;
         }
