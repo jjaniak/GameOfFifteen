@@ -31,6 +31,14 @@ public class GameBoardTests {
     }
 
     @Test
+    public void checkShufflingDelicatelyWorks() {
+        assertTrue(board.isBoardIdentical(conf));
+
+        board.delicatelyShuffle();
+        assertFalse(board.isBoardIdentical(conf));
+    }
+
+    @Test
     public void moveRightCorrectly() {
         assertTrue(board.move(Board.Movements.RIGHT));
         assertEquals(board.getTileValue(1, 2), 0);
