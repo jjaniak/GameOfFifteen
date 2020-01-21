@@ -91,6 +91,28 @@ public class Board {
         }
     }
 
+    void delicatelyShuffle() {
+        Random random = new Random();
+
+        for (int i = 0; i < 70; i++) {
+            int r = random.nextInt(4);
+            switch (r) {
+                case 0:
+                    move(Board.Movements.UP);
+                    break;
+                case 1:
+                    move(Board.Movements.DOWN);
+                    break;
+                case 2:
+                    move(Board.Movements.RIGHT);
+                    break;
+                case 3:
+                    move(Board.Movements.LEFT);
+                    break;
+            }
+        }
+    }
+
 //    Movement in a direction means that empty tile (zero value) is moving in that direction
 //    and the tile which place was taken goes to position previously occupied by empty tile.
 
@@ -113,8 +135,6 @@ public class Board {
         }
         return isPossible;
     }
-
-
 
     private boolean moveRight() {
         if (emptyTile.column == 3) {
