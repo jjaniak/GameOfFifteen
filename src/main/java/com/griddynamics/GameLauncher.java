@@ -45,16 +45,16 @@ public class GameLauncher {
                 printer.appendNewLine();
                 switch (m) {
                     case UP:
-                        easyBoard.moveUp();
+                        easyBoard.move(Board.Movements.UP);
                         break;
                     case DOWN:
-                        easyBoard.moveDown();
+                        easyBoard.move(Board.Movements.DOWN);
                         break;
                     case RIGHT:
-                        easyBoard.moveRight();
+                        easyBoard.move(Board.Movements.RIGHT);
                         break;
                     case LEFT:
-                        easyBoard.moveLeft();
+                        easyBoard.move(Board.Movements.LEFT);
                         break;
                 }
                 printer.append(easyBoard.toString());

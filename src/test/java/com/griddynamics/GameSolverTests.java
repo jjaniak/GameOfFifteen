@@ -14,10 +14,10 @@ public class GameSolverTests {
     public void checkIsGameSolvedMethod() {
         Board solvedBoard = new Board(GameSolver.SOLVED_CONFIGURATION);
 
-        solvedBoard.moveUp();
+        solvedBoard.move(Board.Movements.UP);
         assertFalse(solver.isGameSolved(solvedBoard));
 
-        solvedBoard.moveDown();
+        solvedBoard.move(Board.Movements.DOWN);
         assertTrue(solver.isGameSolved(solvedBoard));
     }
 

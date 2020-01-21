@@ -70,39 +70,39 @@ public class GameSolver {
         for (Board.Movements m : Board.Movements.values()) {
             switch (m) {
                 case UP:
-                    if (last == Board.Movements.DOWN || !board.moveUp())
+                    if (last == Board.Movements.DOWN || !board.move(Board.Movements.UP))
                         continue;
                     moves.add(m);
                     if (solveRecursive(moves, board))
                         return true;
-                    board.moveDown(); // undo the move
+                    board.move(Board.Movements.DOWN); // undo the move
                     moves.remove(moves.size() - 1);
                     break;
                 case DOWN:
-                    if (last == Board.Movements.UP || !board.moveDown())
+                    if (last == Board.Movements.UP || !board.move(Board.Movements.DOWN))
                         continue;
                     moves.add(m);
                     if (solveRecursive(moves, board))
                         return true;
-                    board.moveUp(); // undo the move
+                    board.move(Board.Movements.UP); // undo the move
                     moves.remove(moves.size() - 1);
                     break;
                 case LEFT:
-                    if (last == Board.Movements.RIGHT || !board.moveLeft())
+                    if (last == Board.Movements.RIGHT || !board.move(Board.Movements.LEFT))
                         continue;
                     moves.add(m);
                     if (solveRecursive(moves, board))
                         return true;
-                    board.moveRight(); // undo the move
+                    board.move(Board.Movements.RIGHT); // undo the move
                     moves.remove(moves.size() - 1);
                     break;
                 case RIGHT:
-                    if (last == Board.Movements.LEFT || !board.moveRight())
+                    if (last == Board.Movements.LEFT || !board.move(Board.Movements.RIGHT))
                         continue;
                     moves.add(m);
                     if (solveRecursive(moves, board))
                         return true;
-                    board.moveLeft(); // undo the move
+                    board.move(Board.Movements.LEFT); // undo the move
                     moves.remove(moves.size() - 1);
                     break;
             }
