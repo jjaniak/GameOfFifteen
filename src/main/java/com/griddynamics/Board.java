@@ -113,8 +113,8 @@ public class Board {
         }
     }
 
-//    Movement in a direction means that empty tile (zero value) is moving in that direction
-//    and the tile which place was taken goes to position previously occupied by empty tile.
+    // Movement in a direction means that empty tile (zero value) is moving in that direction
+    // and the tile which place was taken goes to position previously occupied by empty tile.
 
     boolean move(Movements direction) {
         boolean isPossible = false;

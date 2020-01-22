@@ -53,7 +53,6 @@ public class GameSolver {
 
     public ArrayList<Movements> solve(Board board) {
         if (!isGameSolvable(board)){
-//            System.out.println("The game is not solvable");
             return null;
         }
 

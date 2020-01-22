@@ -18,11 +18,8 @@ public class OutputTests {
     @AfterEach
     public void deleteFile() {
         try {
-            System.out.println("deleting file");
             Files.deleteIfExists(Paths.get(TEST_FILE_PATH));
-            System.out.println("file deleted");
         } catch (IOException e) {
-            e.printStackTrace();
             System.err.format("IOException: %s%n", e);
         }
     }
