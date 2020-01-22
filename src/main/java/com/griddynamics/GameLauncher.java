@@ -21,8 +21,7 @@ public class GameLauncher {
 //        When the game solving algorithm is improved, the following line can be uncommented
 //        easyBoard.shuffleBoardConfiguration();
 
-        printer.append("Initial configuration: ");
-        printer.appendNewLine();
+        printer.appendLine("Initial configuration: ");
         printer.append(easyBoard.toString());
 
         ArrayList<Board.Movements> moves = solver.solve(copyBoard);
@@ -32,8 +31,7 @@ public class GameLauncher {
             printer.append("-1");
         } else {
             printer.append("Number of tiles movements needed to solve the game: " + moves.size());
-            printer.appendNewLine();
-            printer.appendNewLine();
+            printer.appendLine(OutputProcessor.NEW_LINE);
 
             if (moves.size() == 0) {
                 printer.append("No movement was needed to solve the game as the initial configuration was already solved");
