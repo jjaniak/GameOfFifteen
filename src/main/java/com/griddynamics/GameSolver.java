@@ -72,46 +72,33 @@ public class GameSolver {
         if (moves.size() >= 20)
             return false;
 
-        for (Board.Movements m : Board.Movements.values()) {
-            switch (m) {
-                case UP:
-                    if (last == Board.Movements.DOWN || !board.move(Board.Movements.UP))
-                        continue;
-                    moves.add(m);
-                    if (solveRecursive(moves, board))
-                        return true;
-                    board.move(Board.Movements.DOWN); // undo the move
-                    moves.remove(moves.size() - 1);
-                    break;
-                case DOWN:
-                    if (last == Board.Movements.UP || !board.move(Board.Movements.DOWN))
-                        continue;
-                    moves.add(m);
-                    if (solveRecursive(moves, board))
-                        return true;
-                    board.move(Board.Movements.UP); // undo the move
-                    moves.remove(moves.size() - 1);
-                    break;
-                case LEFT:
-                    if (last == Board.Movements.RIGHT || !board.move(Board.Movements.LEFT))
-                        continue;
-                    moves.add(m);
-                    if (solveRecursive(moves, board))
-                        return true;
-                    board.move(Board.Movements.RIGHT); // undo the move
-                    moves.remove(moves.size() - 1);
-                    break;
-                case RIGHT:
-                    if (last == Board.Movements.LEFT || !board.move(Board.Movements.RIGHT))
-                        continue;
-                    moves.add(m);
-                    if (solveRecursive(moves, board))
-                        return true;
-                    board.move(Board.Movements.LEFT); // undo the move
-                    moves.remove(moves.size() - 1);
-                    break;
-            }
+        for (Movements m : Movements.values()) {
+            Movements opposite = getOppositeMovement(m);
+            if (last == opposite || !board.move(m))
+                continue;
+
+            moves.add(m);
+            if (solveRecursive(moves, board))
+                return true;
+
+        //  Did not work - undo the movement and remove it from the list
+            board.move(opposite);
+            moves.remove(moves.size() - 1);
         }
         return false;
+    }
+
+    private Movements getOppositeMovement(Movements move) {
+        switch (move) {
+            case UP:
+                return Movements.DOWN;
+            case DOWN:
+                return Movements.UP;
+            case LEFT:
+                return Movements.RIGHT;
+            case RIGHT:
+                return Movements.LEFT;
+        }
+        return null; // Should never happen
     }
 }
