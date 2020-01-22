@@ -3,12 +3,13 @@ package com.griddynamics;
 import java.util.ArrayList;
 
 public class GameLauncher {
+    static final String FILE_PATH = "src/test/resources/file.txt";
+    static final String INITIAL_CONF_MESSAGE = "Initial configuration: ";
+    static final String MOVES_NUMBER_MESSAGE = "Number of tiles movements needed to solve the game: ";
 
     public static void main(String[] args) {
         GameSolver solver = new GameSolver();
-
-        final String filePath = "src/test/resources/file.txt";
-        OutputProcessor printer = new FileOutputProcessor(filePath);
+        OutputProcessor printer = new FileOutputProcessor(FILE_PATH);
 
         Board board = new Board(GameSolver.SOLVED_CONFIGURATION);
 
@@ -16,7 +17,7 @@ public class GameLauncher {
         board.delicatelyShuffle();
         Board copyBoard = new Board(board.getConfiguration());
 
-        printer.appendLine("Initial configuration: ");
+        printer.appendLine(INITIAL_CONF_MESSAGE);
         printer.append(board.toString());
 
         ArrayList<Board.Movements> moves = solver.solve(copyBoard);
@@ -25,7 +26,7 @@ public class GameLauncher {
             // then -1 will be printed in the file
             printer.append("-1");
         } else {
-            printer.append("Number of tiles movements needed to solve the game: " + moves.size());
+            printer.append(MOVES_NUMBER_MESSAGE + moves.size());
             printer.appendLine(OutputProcessor.NEW_LINE);
 
             if (moves.size() == 0) {
