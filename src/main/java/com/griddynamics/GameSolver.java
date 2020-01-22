@@ -18,11 +18,11 @@ public class GameSolver {
     boolean isGameSolvable(Board board) {
         int numberOfInversions = 0;
 
-//      In order to calculate the number of inversions:
-//          go through each element
+        // In order to calculate the number of inversions:
+        // go through each element
         for (int i = 0; i < 4; i++) {
             for (int j = 0; j < 4; j++) {
-//          then compare the current element with all elements following it
+        // then compare the current element with all elements following it
                 int l = j + 1;
                 for (int k = i; k < 4; k++) {
                     for (; l < 4; l++) {
@@ -35,9 +35,9 @@ public class GameSolver {
             }
         }
 
-//      According to  https://www.cs.bham.ac.uk/~mdr/teaching/modules04/java2/TilesSolvability.html
-//      If empty tile is in 1st or 3rd row (index 0 or 2) and the number of inversions is odd  ---> then it is solvable
-//      If empty tile is in 2nd or 4th row (index 1 or 3) and the number of inversions is even ---> then it is solvable
+        // According to  https://www.cs.bham.ac.uk/~mdr/teaching/modules04/java2/TilesSolvability.html
+        // If empty tile is in 1st or 3rd row (index 0 or 2) and the number of inversions is odd  ---> then it is solvable
+        // If empty tile is in 2nd or 4th row (index 1 or 3) and the number of inversions is even ---> then it is solvable
         Board.Position emptyTile = board.getEmptyTile();
         return (emptyTile.row % 2 == 0 && numberOfInversions % 2 == 1) || (emptyTile.row % 2 == 1 && numberOfInversions % 2 == 0);
     }
@@ -64,7 +64,9 @@ public class GameSolver {
         if (moves.size() > 0)
             last = moves.get(moves.size() - 1);
 
-        if (moves.size() > 9)
+        // Number of movements is limited to prevent the recursion from going too deep. Otherwise, it could end with StackOverflowError.
+        // The drawback is that it can only solve configurations that are not too complicated.
+        if (moves.size() >= 20)
             return false;
 
         for (Board.Movements m : Board.Movements.values()) {
