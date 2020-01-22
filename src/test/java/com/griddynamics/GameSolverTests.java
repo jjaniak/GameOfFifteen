@@ -4,6 +4,7 @@ import org.junit.jupiter.api.Test;
 import java.util.ArrayList;
 
 import static org.junit.jupiter.api.Assertions.*;
+import static com.griddynamics.Board.Movements;
 
 
 public class GameSolverTests {
@@ -14,10 +15,10 @@ public class GameSolverTests {
     public void checkIsGameSolvedMethod() {
         Board solvedBoard = new Board(GameSolver.SOLVED_CONFIGURATION);
 
-        solvedBoard.move(Board.Movements.UP);
+        solvedBoard.move(Movements.UP);
         assertFalse(solver.isGameSolved(solvedBoard));
 
-        solvedBoard.move(Board.Movements.DOWN);
+        solvedBoard.move(Movements.DOWN);
         assertTrue(solver.isGameSolved(solvedBoard));
     }
 
@@ -72,7 +73,7 @@ public class GameSolverTests {
                 {13, 15, 14, 12} };
 
         Board board1 = new Board(conf1);
-        ArrayList<Board.Movements> moves1 = solver.solve(board1);
+        ArrayList<Movements> moves1 = solver.solve(board1);
 
         assertNull(moves1);
 
@@ -83,7 +84,7 @@ public class GameSolverTests {
                 {13, 15, 14, 12} };
 
         Board board2 = new Board(conf2);
-        ArrayList<Board.Movements> moves2 = solver.solve(board2);
+        ArrayList<Movements> moves2 = solver.solve(board2);
 
         assertNull(moves2);
     }
@@ -98,7 +99,7 @@ public class GameSolverTests {
                 {13, 14, 15, 12}});
 
         Board copyBoard = new Board(easyBoard.getConfiguration());
-        ArrayList<Board.Movements> moves = solver.solve(copyBoard);
+        ArrayList<Movements> moves = solver.solve(copyBoard);
 
         assertNotEquals(null, moves);
     }

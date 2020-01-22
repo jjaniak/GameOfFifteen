@@ -3,7 +3,9 @@ package com.griddynamics;
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.DisplayName;
 import org.junit.jupiter.api.Test;
+
 import static org.junit.jupiter.api.Assertions.*;
+import static com.griddynamics.Board.Movements.*;
 
 public class GameBoardTests {
 
@@ -40,71 +42,71 @@ public class GameBoardTests {
 
     @Test
     public void moveRightCorrectly() {
-        assertTrue(board.move(Board.Movements.RIGHT));
+        assertTrue(board.move(RIGHT));
         assertEquals(board.getTileValue(1, 2), 0);
         assertEquals(board.getTileValue(1, 1), 7);
 
-        assertTrue(board.move(Board.Movements.RIGHT));
+        assertTrue(board.move(RIGHT));
         assertEquals(board.getTileValue(1, 3), 0);
         assertEquals(board.getTileValue(1, 2), 5);
     }
 
     @Test
     public void moveRightIncorrectly() {
-        board.move(Board.Movements.RIGHT);
-        board.move(Board.Movements.RIGHT);
+        board.move(RIGHT);
+        board.move(RIGHT);
 
-        assertFalse(board.move(Board.Movements.RIGHT));
+        assertFalse(board.move(RIGHT));
         assertEquals(board.getTileValue(1, 3), 0);
     }
 
     @Test
     public void moveLeftCorrectly() {
-        assertTrue(board.move(Board.Movements.LEFT));
+        assertTrue(board.move(LEFT));
         assertEquals(board.getTileValue(1, 0), 0);
         assertEquals(board.getTileValue(1, 1), 2);
     }
 
     @Test
     public void moveLeftIncorrectly() {
-        board.move(Board.Movements.LEFT);
+        board.move(LEFT);
 
-        assertFalse(board.move(Board.Movements.LEFT));
+        assertFalse(board.move(LEFT));
         assertEquals(board.getTileValue(1, 0), 0);
     }
 
     @Test
     public void moveUptCorrectly() {
-        assertTrue(board.move(Board.Movements.UP));
+        assertTrue(board.move(UP));
         assertEquals(board.getTileValue(0, 1), 0);
         assertEquals(board.getTileValue(1, 1), 15);
     }
 
     @Test
     public void moveUpIncorrectly() {
-        board.move(Board.Movements.UP);
+        board.move(UP);
 
-        assertFalse(board.move(Board.Movements.UP));
+        assertFalse(board.move(UP));
         assertEquals(board.getTileValue(0, 1), 0);
     }
 
     @Test
     public void moveDownCorrectly() {
-        assertTrue(board.move(Board.Movements.DOWN));
+        assertTrue(board.move(DOWN));
         assertEquals(board.getTileValue(2, 1), 0);
         assertEquals(board.getTileValue(1, 1), 4);
 
-        assertTrue(board.move(Board.Movements.DOWN));
+        assertTrue(board.move(DOWN));
         assertEquals(board.getTileValue(3, 1), 0);
         assertEquals(board.getTileValue(2, 1), 14);
     }
 
     @Test
     public void moveDownIncorrectly() {
-        board.move(Board.Movements.DOWN);
-        board.move(Board.Movements.DOWN);
+        board.move(DOWN);
+        board.move(DOWN);
 
-        assertFalse(board.move(Board.Movements.DOWN));
+        assertFalse(board.move(DOWN));
         assertEquals(board.getTileValue(3, 1), 0);
 
     }
