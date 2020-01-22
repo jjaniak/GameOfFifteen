@@ -26,12 +26,13 @@ class FileOutputProcessor implements OutputProcessor {
             System.err.format("IOException: %s%n", e);
         }
     }
+
     @Override
-    public void appendNewLine() {
+    public void appendLine(String input) {
         try(BufferedWriter writer = Files.newBufferedWriter(Paths.get(filePath),
                 StandardOpenOption.CREATE,
                 StandardOpenOption.APPEND)) {
-            writer.write(NEW_LINE);
+            writer.write(input + NEW_LINE);
         } catch (IOException e) {
             System.err.format("IOException: %s%n", e);
         }

@@ -4,5 +4,5 @@ public interface OutputProcessor {
 
     void append(String input);
 
-    void appendNewLine();
+    void appendLine(String input);
 }
