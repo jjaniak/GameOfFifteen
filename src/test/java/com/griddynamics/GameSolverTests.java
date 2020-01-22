@@ -91,7 +91,21 @@ public class GameSolverTests {
 
     @Test
     public void ShouldSolveGame() {
-//  this is a simplified board configuration (not shuffled a lot) which my application manages to solve
+        // this is a simplified board configuration (not extremely shuffled) which the application can solve for sure
+        Board board = new Board(new int[][]{
+                { 1,  0,  2,  4},
+                { 5,  7,  3,  8},
+                { 9,  6, 10, 11},
+                {13, 14, 15, 12}});
+
+        ArrayList<Movements> moves = solver.solve(board);
+
+        assertNotEquals(null, moves);
+        assertTrue(solver.isGameSolved(board));
+    }
+
+    @Test
+    public void returnedMovesShouldBeValid() {
         Board easyBoard = new Board(new int[][]{
                 { 1,  0,  2,  4},
                 { 5,  7,  3,  8},
@@ -101,6 +115,10 @@ public class GameSolverTests {
         Board copyBoard = new Board(easyBoard.getConfiguration());
         ArrayList<Movements> moves = solver.solve(copyBoard);
 
-        assertNotEquals(null, moves);
+        for (Movements m : moves) {
+            boolean isValid = easyBoard.move(m);
+            assertTrue(isValid);
+        }
+        assertTrue(solver.isGameSolved(easyBoard));
     }
 }
