@@ -75,7 +75,7 @@ public class GameSolver {
 
         // Number of movements is limited to prevent the recursion from going too deep. Otherwise, it could end with StackOverflowError.
         // The drawback is that it can only solve configurations that are not too complicated.
-        if (moves.size() >= 20)
+        if (moves.size() >= 25)
             return false;
 
         for (Movements m : Movements.values()) {
