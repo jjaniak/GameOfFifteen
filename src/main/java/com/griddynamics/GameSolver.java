@@ -73,6 +73,8 @@ public class GameSolver {
         if (moves.size() > 0)
             last = moves.get(moves.size() - 1);
 
+        // todo improve solveRecursive method to be able to solve all solvable configurations,
+        //  once done the number of movements could be increased to 80 (or maybe totally removed)
         // Number of movements is limited to prevent the recursion from going too deep. Otherwise, it could end with StackOverflowError.
         // The drawback is that it can only solve configurations that are not too complicated.
         if (moves.size() >= 25)
