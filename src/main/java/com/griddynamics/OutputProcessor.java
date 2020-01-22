@@ -1,6 +1,7 @@
 package com.griddynamics;
 
 public interface OutputProcessor {
+    final String NEW_LINE = System.getProperty("line.separator");
 
     void append(String input);
 

@@ -9,8 +9,6 @@ import java.nio.file.StandardOpenOption;
 class FileOutputProcessor implements OutputProcessor {
     
     private final String filePath;
-    private final String NEW_LINE = System.getProperty("line.separator");
-
 
     FileOutputProcessor(String filePath) {
         this.filePath = filePath;
