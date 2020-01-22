@@ -10,24 +10,19 @@ public class GameLauncher {
         final String filePath = "src/test/resources/file.txt";
         OutputProcessor printer = new FileOutputProcessor(filePath);
 
-        int[][] conf = new int[][]{
-                { 1,  2,  3,  4},
-                { 5,  7,  0,  8},
-                { 9,  6, 10, 11},
-                {13, 14, 15, 12}};
+        Board board = new Board(GameSolver.SOLVED_CONFIGURATION);
 
-        Board easyBoard = new Board(conf);
-        Board copyBoard = new Board(conf);
-//        When the game solving algorithm is improved, the following line can be uncommented
-//        easyBoard.shuffleBoardConfiguration();
+        // When the game solving algorithm is improved delicatelyShuffle() can be replaced with shuffleBoardConfiguration()
+        board.delicatelyShuffle();
+        Board copyBoard = new Board(board.getConfiguration());
 
         printer.appendLine("Initial configuration: ");
-        printer.append(easyBoard.toString());
+        printer.append(board.toString());
 
         ArrayList<Board.Movements> moves = solver.solve(copyBoard);
-
         if (moves == null) {
-//          If it is impossible to solve the game, then -1 will be printed in the file
+            // If the solution is unattainable (the configuration isn't solvable or it's too difficult for now),
+            // then -1 will be printed in the file
             printer.append("-1");
         } else {
             printer.append("Number of tiles movements needed to solve the game: " + moves.size());
