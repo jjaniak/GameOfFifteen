@@ -37,26 +37,16 @@ public class GameLauncher {
                 printer.append("No movement was needed to solve the game as the initial configuration was already solved");
             }
 
-//          recreating configurations from moves and appending them to the file
-            for (Board.Movements m : moves) {
-                printer.append(m.toString());
-                printer.appendNewLine();
-                switch (m) {
-                    case UP:
-                        easyBoard.move(Board.Movements.UP);
-                        break;
-                    case DOWN:
-                        easyBoard.move(Board.Movements.DOWN);
-                        break;
-                    case RIGHT:
-                        easyBoard.move(Board.Movements.RIGHT);
-                        break;
-                    case LEFT:
-                        easyBoard.move(Board.Movements.LEFT);
-                        break;
-                }
-                printer.append(easyBoard.toString());
-            }
+            printMovements(board, moves, printer);
+        }
+    }
+
+    private static void printMovements(Board board, ArrayList<Board.Movements> moves, OutputProcessor printer) {
+        // recreating configurations from moves and appending them to the file
+        for (Board.Movements m : moves) {
+            printer.appendLine(m.toString());
+            board.move(m);
+            printer.append(board.toString());
         }
     }
 }
