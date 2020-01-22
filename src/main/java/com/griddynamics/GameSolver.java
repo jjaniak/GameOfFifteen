@@ -3,6 +3,8 @@ package com.griddynamics;
 import java.util.ArrayList;
 import java.util.Arrays;
 
+import static com.griddynamics.Board.Movements;
+
 public class GameSolver {
 
     static final int[][] SOLVED_CONFIGURATION = {
@@ -42,13 +44,13 @@ public class GameSolver {
         return (emptyTile.row % 2 == 0 && numberOfInversions % 2 == 1) || (emptyTile.row % 2 == 1 && numberOfInversions % 2 == 0);
     }
 
-    public ArrayList<Board.Movements> solve(Board board) {
+    public ArrayList<Movements> solve(Board board) {
         if (!isGameSolvable(board)){
             System.out.println("The game is not solvable");
             return null;
         }
 
-        ArrayList<Board.Movements> moves = new ArrayList<>();
+        ArrayList<Movements> moves = new ArrayList<>();
 
         if (solveRecursive(moves, board))
             return moves;
@@ -56,11 +58,12 @@ public class GameSolver {
             return null;
     }
 
-    private boolean solveRecursive(ArrayList<Board.Movements> moves, Board board) {
+    private boolean solveRecursive(ArrayList<Movements> moves, Board board) {
+
         if (isGameSolved(board))
             return true;
 
-        Board.Movements last = null;
+        Movements last = null;
         if (moves.size() > 0)
             last = moves.get(moves.size() - 1);
 
