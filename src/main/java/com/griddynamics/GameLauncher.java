@@ -8,13 +8,19 @@ public class GameLauncher {
     static final String MOVES_NUMBER_MESSAGE = "Number of tiles movements needed to solve the game: ";
 
     public static void main(String[] args) {
+        Board board;
+
+        if (args != null && args.length > 0) {
+            board = new Board(GameSolver.UNSOLVABLE_CONFIGURATION);
+        } else {
+            board = new Board(GameSolver.SOLVED_CONFIGURATION);
+            // When the game solving algorithm is improved delicatelyShuffle() can be replaced with shuffleBoardConfiguration()
+            board.delicatelyShuffle();
+        }
+
         GameSolver solver = new GameSolver();
         OutputProcessor printer = new FileOutputProcessor(FILE_PATH);
 
-        Board board = new Board(GameSolver.SOLVED_CONFIGURATION);
-
-        // When the game solving algorithm is improved delicatelyShuffle() can be replaced with shuffleBoardConfiguration()
-        board.delicatelyShuffle();
         Board copyBoard = new Board(board.getConfiguration());
 
         printer.appendLine(INITIAL_CONF_MESSAGE);
