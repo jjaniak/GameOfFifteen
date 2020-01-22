@@ -98,16 +98,16 @@ public class Board {
             int r = random.nextInt(4);
             switch (r) {
                 case 0:
-                    move(Board.Movements.UP);
+                    move(Movements.UP);
                     break;
                 case 1:
-                    move(Board.Movements.DOWN);
+                    move(Movements.DOWN);
                     break;
                 case 2:
-                    move(Board.Movements.RIGHT);
+                    move(Movements.RIGHT);
                     break;
                 case 3:
-                    move(Board.Movements.LEFT);
+                    move(Movements.LEFT);
                     break;
             }
         }
