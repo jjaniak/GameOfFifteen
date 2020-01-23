@@ -3,9 +3,9 @@ package com.griddynamics;
 import java.util.Arrays;
 import java.util.Random;
 
-public class Board {
+class Board {
 
-    public static class Position {
+    static class Position {
         int row;
         int column;
 
@@ -40,14 +40,14 @@ public class Board {
 
     private int[][] configuration;
 
-    public Position getEmptyTile() {
+    Position getEmptyTile() {
         return emptyTile;
     }
 
     private Position emptyTile;
 
 
-    public Board(int[][] passedConfiguration) {
+    Board(int[][] passedConfiguration) {
         this.configuration = new int[4][];
         for (int i = 0; i < 4; i++) {
             this.configuration[i] = Arrays.copyOf(passedConfiguration[i], passedConfiguration[i].length);
@@ -55,7 +55,7 @@ public class Board {
         updateEmptyTilePosition();
     }
 
-    public int[][] getConfiguration() {
+    int[][] getConfiguration() {
         return configuration;
     }
 

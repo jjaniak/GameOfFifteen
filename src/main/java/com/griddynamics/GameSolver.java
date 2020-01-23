@@ -5,14 +5,12 @@ import java.util.Arrays;
 
 import static com.griddynamics.Board.Movements;
 
-public class GameSolver {
+class GameSolver {
     static final int[][] UNSOLVABLE_CONFIGURATION = {
             { 1,  2,  3,  4},
             { 5,  6,  7,  8},
             { 9, 10, 11,  0},
             {13, 15, 14, 12} };
-
-
 
     static final int[][] SOLVED_CONFIGURATION = {
             { 1,  2,  3,  4},
@@ -51,7 +49,7 @@ public class GameSolver {
         return (emptyTile.row % 2 == 0 && numberOfInversions % 2 == 1) || (emptyTile.row % 2 == 1 && numberOfInversions % 2 == 0);
     }
 
-    public ArrayList<Movements> solve(Board board) {
+    ArrayList<Movements> solve(Board board) {
         if (!isGameSolvable(board)){
             return null;
         }
