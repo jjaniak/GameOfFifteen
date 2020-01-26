@@ -18,16 +18,12 @@ public class OutputTests {
     private static final String TEST_FILE_PATH = "src/test/resources/TestFile.txt";
 
     @AfterEach
-    public void deleteFile() {
-        try {
-            Files.deleteIfExists(Paths.get(TEST_FILE_PATH));
-        } catch (IOException e) {
-            System.err.format("IOException: %s%n", e);
-        }
+    public void deleteFile() throws IOException {
+        Files.deleteIfExists(Paths.get(TEST_FILE_PATH));
     }
 
     @Test
-    public void fileShouldExistAndNotEmpty() {
+    public void fileShouldExistAndNotEmpty() throws IOException {
         OutputProcessor printer = new FileOutputProcessor(TEST_FILE_PATH);
         printer.append("Just some input to check if file is not empty");
 
@@ -35,12 +31,8 @@ public class OutputTests {
         assertThat("File does not exist",  file, anExistingFile());
         assertThat("File is not readable", file, aReadableFile());
 
-        String content = null;
-        try {
-            content = Files.readString(Paths.get(TEST_FILE_PATH));
-        } catch (IOException e) {
-            System.err.format("IOException: %s%n", e);
-        }
+        String content = Files.readString(Paths.get(TEST_FILE_PATH));
+
         assertThat("File is unexpectedly empty", (content != null) && (content.length() > 0));
     }
 }

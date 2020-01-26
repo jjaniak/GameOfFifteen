@@ -14,25 +14,16 @@ import static org.hamcrest.Matchers.*;
 public class GameLauncherTests {
 
     @AfterEach
-    public void deleteFile() {
-        try {
-            Files.deleteIfExists(Paths.get(FILE_PATH));
-        } catch (IOException e) {
-            System.err.format("IOException: %s%n", e);
-        }
+    public void deleteFile() throws IOException {
+        Files.deleteIfExists(Paths.get(FILE_PATH));
     }
 
     @Test
-    public void shouldProperlyPrintNotSolvable() {
+    public void shouldProperlyPrintNotSolvable() throws IOException {
         String[] args = new String[] { "invalid" };
         GameLauncher.main(args);
 
-        String content = null;
-        try {
-            content = Files.readString(Paths.get(FILE_PATH));
-        } catch (IOException e) {
-            System.err.format("IOException: %s%n", e);
-        }
+        String content = Files.readString(Paths.get(FILE_PATH));
 
         assertThat("File does not contain initial message", content, containsString(INITIAL_CONF_MESSAGE));
 
@@ -41,15 +32,10 @@ public class GameLauncherTests {
     }
 
     @Test
-    public void shouldProperlyPrintSolvable() {
+    public void shouldProperlyPrintSolvable() throws IOException {
         GameLauncher.main(null);
 
-        String content = null;
-        try {
-            content = Files.readString(Paths.get(FILE_PATH));
-        } catch (IOException e) {
-            System.err.format("IOException: %s%n", e);
-        }
+        String content = Files.readString(Paths.get(FILE_PATH));
 
         assertThat("File does not contain initial message", content, containsString(INITIAL_CONF_MESSAGE));
         assertThat("File does not contain number of moves message", content, containsString(MOVES_NUMBER_MESSAGE));
