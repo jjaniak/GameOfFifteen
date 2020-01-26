@@ -124,7 +124,6 @@ public class GameBoardTests {
         assertEquals("-1 is not a valid value", exception1.getMessage());
 
         Exception exception2 = assertThrows(IllegalArgumentException.class, ()-> board.getTileValue(16, 16));
-        System.out.println(exception2.getMessage());
         assertEquals("16 and 16 are not valid values", exception2.getMessage());
     }
 
