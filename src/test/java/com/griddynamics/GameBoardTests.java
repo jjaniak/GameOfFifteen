@@ -121,7 +121,6 @@ public class GameBoardTests {
     @DisplayName("Test checks if IllegalArgumentException is thrown when given invalid position coordinates")
     public void getTileValueGivenIncorrectCoordinates() {
         Exception exception1 = assertThrows(IllegalArgumentException.class, ()-> board.getTileValue(0, -1));
-        System.out.println(exception1.getMessage());
         assertEquals("-1 is not a valid value", exception1.getMessage());
 
         Exception exception2 = assertThrows(IllegalArgumentException.class, ()-> board.getTileValue(16, 16));
