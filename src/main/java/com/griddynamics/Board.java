@@ -1,7 +1,11 @@
 package com.griddynamics;
 
-import java.util.Arrays;
-import java.util.Random;
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Paths;
+import java.util.*;
+import java.util.logging.Logger;
 
 import static com.griddynamics.Consts.NEW_LINE;
 
@@ -40,6 +44,8 @@ class Board {
         }
     }
 
+    private static final Logger LOGGER = Logger.getLogger("com.griddynamics");
+    private static final List<Integer> expectedValues = Arrays.asList(0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15);
     private int[][] configuration;
 
     Position getEmptyTile() {
@@ -220,5 +226,39 @@ class Board {
 
     boolean isBoardIdentical(int[][] configuration) {
         return Arrays.deepEquals(this.configuration, configuration);
+    }
+
+    static Board readFromFile(String filePath) throws IllegalArgumentException {
+        int[][] inputConfiguration = new int[4][4];
+        Set<Integer> set = new HashSet<>();
+
+        try(BufferedReader reader = Files.newBufferedReader(Paths.get(filePath))) {
+            for (int i = 0; i < 4; i++) {
+                String line = reader.readLine();
+                if (line == null) {
+                    throw new IllegalArgumentException("missing lines");
+                }
+
+                String[] numbers = line.split("\\s+");
+                if (numbers.length != 4) {
+                    throw new IllegalArgumentException("there should be 4 numbers in line " + (i+1));
+                }
+                for (int j = 0; j < 4; j++) {
+                    try {
+                        inputConfiguration[i][j] = Integer.parseInt(numbers[j]);
+                        set.add(inputConfiguration[i][j]);
+                    } catch (NumberFormatException e) {
+                        throw new IllegalArgumentException("invalid number in line " + (i+1) + ": " + numbers[j]);
+                    }
+                }
+            }
+        } catch (IOException e) {
+            LOGGER.severe("Problem with opening file " + e.getMessage());
+        }
+
+        if (!set.containsAll(expectedValues)) {
+            throw new IllegalArgumentException("The file must contain all numbers from 0 to 15 inclusive");
+        }
+        return new Board(inputConfiguration);
     }
 }
