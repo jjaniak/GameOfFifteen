@@ -5,7 +5,7 @@ import java.util.ArrayList;
 import static com.griddynamics.Consts.NEW_LINE;
 
 public class GameLauncher {
-    static final String FILE_PATH = "src/test/resources/file.txt";
+    static final String OUTPUT_FILE_PATH = "src/main/resources/gameResult.txt";
     static final String INITIAL_CONF_MESSAGE = "Initial configuration: ";
     static final String MOVES_NUMBER_MESSAGE = "Number of tiles movements needed to solve the game: ";
 
@@ -22,7 +22,7 @@ public class GameLauncher {
 
         GameSolver solver = new GameSolver();
 
-        Files.deleteIfExists(Paths.get(FILE_PATH));
+        Files.deleteIfExists(Paths.get(OUTPUT_FILE_PATH));
         OutputProcessor printer = new FileOutputProcessor(OUTPUT_FILE_PATH);
 
         Board copyBoard = new Board(board.getConfiguration());
@@ -32,7 +32,7 @@ public class GameLauncher {
 
         ArrayList<Board.Movements> moves = solver.solve(copyBoard);
         if ( null == moves) {
-            // If the solution is unattainable (the configuration isn't solvable or it's too difficult for now),
+            // If the solution is unattainable (the configuration is unsolvable or it's too difficult for now),
             // then -1 will be printed in the file
             printer.append("-1");
         } else {
