@@ -6,6 +6,7 @@ import org.junit.jupiter.api.Test;
 
 import static com.griddynamics.Board.Movements.*;
 import static org.junit.jupiter.api.Assertions.*;
+import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class GameBoardTests {
 
@@ -118,13 +119,10 @@ public class GameBoardTests {
     }
 
     @Test
-    @DisplayName("Test checks if IllegalArgumentException is thrown when given invalid position coordinates")
+    @DisplayName("Test checks if -1 is returned when given invalid position coordinates")
     public void getTileValueGivenIncorrectCoordinates() {
-        Exception exception1 = assertThrows(IllegalArgumentException.class, ()-> board.getTileValue(0, -1));
-        assertEquals("-1 is not a valid value", exception1.getMessage());
-
-        Exception exception2 = assertThrows(IllegalArgumentException.class, ()-> board.getTileValue(16, 16));
-        assertEquals("16 and 16 are not valid values", exception2.getMessage());
+        assertEquals(-1, board.getTileValue(0, -1));
+        assertEquals(-1, board.getTileValue(16, 16));
     }
 
     @Test
@@ -134,9 +132,8 @@ public class GameBoardTests {
     }
 
     @Test
-    @DisplayName("Test checks if IllegalArgumentException is thrown when given invalid value")
     public void getTilePositionGivenIncorrectValue() {
-        assertThrows(IllegalArgumentException.class, ()-> board.getTilePosition(-1));
-        assertThrows(IllegalArgumentException.class, ()-> board.getTilePosition(16));
+        assertNull(board.getTilePosition(-1));
+        assertNull(board.getTilePosition(16));
     }
 }
