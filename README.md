@@ -15,11 +15,11 @@ Not all board configurations are solvable (in reality only a half of them can be
 ##### INSTRUCTIONS
 Run GameLauncher with file path as argument, so it can read the game configuration from the file and try to solve it.
 
-If you run it without arguments, it will generate a solvable configuration and will solve it.
+If you run it without arguments, it will generate a random solvable configuration and will solve it.
 
 ##### INPUT
 The initial configuration in the input file must contain 4 lines. Each line should contain 4 numbers separated by space.
-The file must contain all numbers (can be in random order) from 0 to 15 inclusive, where 0 defines an empty cell.
+The file must contain exactly once all numbers (can be in random order) from 0 to 15 inclusive, where 0 defines an empty cell.
 
 #####  OUTPUT
 The result will be printed to a file. 
