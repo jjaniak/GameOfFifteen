@@ -6,11 +6,6 @@ import java.util.Arrays;
 import static com.griddynamics.Board.Movements;
 
 class GameSolver {
-    static final int[][] UNSOLVABLE_CONFIGURATION = {
-            { 1,  2,  3,  4},
-            { 5,  6,  7,  8},
-            { 9, 10, 11,  0},
-            {13, 15, 14, 12} };
 
     static final int[][] SOLVED_CONFIGURATION = {
             { 1,  2,  3,  4},
