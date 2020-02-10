@@ -50,42 +50,48 @@ class GameSolver {
     }
 
     ArrayList<Movements> solve(Board board) {
-        if (!isGameSolvable(board)){
+        if (!isGameSolvable(board)) {
             return null;
         }
 
         ArrayList<Movements> moves = new ArrayList<>();
 
-        if (solveRecursive(moves, board))
+        if (solveRecursive(moves, board)) {
             return moves;
-        else
+        } else {
             return null;
+        }
     }
 
     private boolean solveRecursive(ArrayList<Movements> moves, Board board) {
 
-        if (isGameSolved(board))
+        if (isGameSolved(board)) {
             return true;
+        }
 
         Movements last = null;
-        if (moves.size() > 0)
+        if (moves.size() > 0) {
             last = moves.get(moves.size() - 1);
+        }
 
         // todo improve solveRecursive method to be able to solve all solvable configurations,
         //  once done the number of movements could be increased to 80 (or maybe totally removed)
         // Number of movements is limited to prevent the recursion from going too deep. Otherwise, it could end with StackOverflowError.
         // The drawback is that it can only solve configurations that are not too complicated.
-        if (moves.size() >= 25)
+        if (moves.size() >= 25) {
             return false;
+        }
 
         for (Movements m : Movements.values()) {
             Movements opposite = getOppositeMovement(m);
-            if (last == opposite || !board.move(m))
+            if (last == opposite || !board.move(m)) {
                 continue;
+            }
 
             moves.add(m);
-            if (solveRecursive(moves, board))
+            if (solveRecursive(moves, board)) {
                 return true;
+            }
 
         //  Did not work - undo the movement and remove it from the list
             board.move(opposite);

@@ -189,8 +189,9 @@ class Board {
     }
 
     Position getTilePosition(int value) throws IllegalArgumentException {
-         if (value < 0 || value > 15)
+         if (value < 0 || value > 15) {
              throw new IllegalArgumentException(value + " is not a valid value");
+         }
 
          for (int i = 0; i < 4; i++) {
              for (int j = 0; j < 4; j++) {
@@ -204,13 +205,15 @@ class Board {
     }
 
     int getTileValue(int r, int c) throws IllegalArgumentException {
-        if ((r <  0 || r > 3) && (c <  0 || c > 3))
+        if ((r <  0 || r > 3) && (c <  0 || c > 3)) {
             throw new IllegalArgumentException(r + " and " + c + " are not valid values");
-        else if (r <  0 || r > 3)
+        }
+        else if (r <  0 || r > 3) {
             throw new IllegalArgumentException(r + " is not a valid value");
-        else if (c <  0 || c > 3)
+        }
+        else if (c <  0 || c > 3) {
             throw new IllegalArgumentException(c + " is not a valid value");
-
+        }
         return configuration[r][c];
     }
 
