@@ -3,6 +3,8 @@ package com.griddynamics;
 import java.util.Arrays;
 import java.util.Random;
 
+import static com.griddynamics.Consts.NEW_LINE;
+
 class Board {
 
     static class Position {
@@ -62,7 +64,6 @@ class Board {
     @Override
     public String toString() {
         StringBuilder result = new StringBuilder();
-        String newLine = System.getProperty("line.separator");
 
         for (int[] row : this.configuration) {
             if (row != null) {
@@ -70,10 +71,10 @@ class Board {
                 for (int col : row) {
                     result.append(col).append(" ");
                 }
-                result.append("]").append(newLine);
+                result.append("]").append(NEW_LINE);
             }
         }
-        result.append(newLine);
+        result.append(NEW_LINE);
         return result.toString();
     }
 

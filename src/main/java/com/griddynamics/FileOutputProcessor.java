@@ -6,6 +6,8 @@ import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.nio.file.StandardOpenOption;
 
+import static com.griddynamics.Consts.NEW_LINE;
+
 class FileOutputProcessor implements OutputProcessor {
     
     private final String filePath;

@@ -2,6 +2,8 @@ package com.griddynamics;
 
 import java.util.ArrayList;
 
+import static com.griddynamics.Consts.NEW_LINE;
+
 public class GameLauncher {
     static final String FILE_PATH = "src/test/resources/file.txt";
     static final String INITIAL_CONF_MESSAGE = "Initial configuration: ";
@@ -33,7 +35,7 @@ public class GameLauncher {
             printer.append("-1");
         } else {
             printer.append(MOVES_NUMBER_MESSAGE + moves.size());
-            printer.appendLine(OutputProcessor.NEW_LINE);
+            printer.appendLine(NEW_LINE);
 
             if (moves.size() == 0) {
                 printer.append("No movement was needed to solve the game as the initial configuration was already solved");
