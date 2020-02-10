@@ -24,7 +24,7 @@ public class GameSolverTests {
     }
 
     @Test
-    public void SolvableGameShouldBeSolvable() {
+    public void solvableGameShouldBeSolvable() {
         int[][] conf = new int[][]{
                 {12,  1, 10,  2},
                 { 7, 11,  4, 14},
@@ -45,7 +45,7 @@ public class GameSolverTests {
     }
 
     @Test
-    public void NotSolvableGameShouldNotBeSolvable() {
+    public void notSolvableGameShouldNotBeSolvable() {
         int[][] conf = new int[][]{
                 { 1,  2,  3,  4},
                 { 5,  6,  7,  8},
@@ -66,7 +66,7 @@ public class GameSolverTests {
     }
 
     @Test
-    public void ShouldNotSolveWhenImpossible() {
+    public void shouldNotSolveWhenImpossible() {
         int[][] conf1 = new int[][] {
                 { 1,  2,  3,  4},
                 { 5,  6,  7,  8},
@@ -91,7 +91,7 @@ public class GameSolverTests {
     }
 
     @Test
-    public void ShouldSolveGame() {
+    public void shouldSolveGame() {
         // this is a simplified board configuration (not extremely shuffled) which the application can solve for sure
         Board board = new Board(new int[][]{
                 { 1,  0,  2,  4},
