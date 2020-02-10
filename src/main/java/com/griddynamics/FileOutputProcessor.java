@@ -5,12 +5,15 @@ import java.io.IOException;
 import java.nio.file.Files;
 import java.nio.file.Paths;
 import java.nio.file.StandardOpenOption;
+import java.util.logging.Logger;
 
 import static com.griddynamics.Consts.NEW_LINE;
 
 class FileOutputProcessor implements OutputProcessor {
     
     private final String filePath;
+    private static final Logger LOGGER = Logger.getLogger("com.griddynamics");
+
 
     FileOutputProcessor(String filePath) {
         this.filePath = filePath;
@@ -23,7 +26,7 @@ class FileOutputProcessor implements OutputProcessor {
                 StandardOpenOption.APPEND)) {
             writer.write(input);
         } catch (IOException e) {
-            System.err.format("IOException: %s%n", e);
+            LOGGER.severe("problem writing to file " + e.getMessage());
         }
     }
 
@@ -34,7 +37,7 @@ class FileOutputProcessor implements OutputProcessor {
                 StandardOpenOption.APPEND)) {
             writer.write(input + NEW_LINE);
         } catch (IOException e) {
-            System.err.format("IOException: %s%n", e);
+            LOGGER.severe("problem writing to file " + e.getMessage());
         }
     }
 }
