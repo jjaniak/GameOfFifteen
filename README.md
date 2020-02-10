@@ -13,12 +13,13 @@ Not all board configurations are solvable (in reality only a half of them can be
 
 
 ##### INSTRUCTIONS
-Run GameLauncher without arguments to generate and solve a 100% solvable configuration.
-If you run it with any argument, it will use an unsolvable configuration as initial game state.
+Run GameLauncher with file path as argument, so it can read the game configuration from the file and try to solve it.
 
+If you run it without arguments, it will generate a solvable configuration and will solve it.
 
 ##### INPUT
-Initial configuration: square tiles numbered from 0 to 15 in random order, where 0 defines an empty cell.
+The initial configuration in the input file must contain 4 lines. Each line should contain 4 numbers separated by space.
+The file must contain all numbers (can be in random order) from 0 to 15 inclusive, where 0 defines an empty cell.
 
 #####  OUTPUT
 The result will be printed to a file. 
