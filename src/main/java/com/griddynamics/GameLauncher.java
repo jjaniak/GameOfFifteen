@@ -21,7 +21,9 @@ public class GameLauncher {
         }
 
         GameSolver solver = new GameSolver();
-        OutputProcessor printer = new FileOutputProcessor(FILE_PATH);
+
+        Files.deleteIfExists(Paths.get(FILE_PATH));
+        OutputProcessor printer = new FileOutputProcessor(OUTPUT_FILE_PATH);
 
         Board copyBoard = new Board(board.getConfiguration());
 
