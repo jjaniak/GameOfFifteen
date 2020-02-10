@@ -1,6 +1,10 @@
 package com.griddynamics;
 
+import java.io.IOException;
+import java.nio.file.Files;
+import java.nio.file.Paths;
 import java.util.ArrayList;
+import java.util.logging.Logger;
 
 import static com.griddynamics.Consts.NEW_LINE;
 
@@ -8,16 +12,22 @@ public class GameLauncher {
     static final String OUTPUT_FILE_PATH = "src/main/resources/gameResult.txt";
     static final String INITIAL_CONF_MESSAGE = "Initial configuration: ";
     static final String MOVES_NUMBER_MESSAGE = "Number of tiles movements needed to solve the game: ";
+    private static final Logger LOGGER = Logger.getLogger("com.griddynamics");
 
-    public static void main(String[] args) {
+    public static void main(String[] args) throws IOException {
         Board board;
 
-        if (args != null && args.length > 0) {
-            board = new Board(GameSolver.UNSOLVABLE_CONFIGURATION);
-        } else {
+        if (null == args || args.length == 0) {
             board = new Board(GameSolver.SOLVED_CONFIGURATION);
             // When the game solving algorithm is improved delicatelyShuffle() can be replaced with shuffleBoardConfiguration()
             board.delicatelyShuffle();
+        } else {
+            try {
+                board = Board.readFromFile(args[0]);
+            } catch (Exception e) {
+                LOGGER.severe(e.getMessage());
+                return;
+            }
         }
 
         GameSolver solver = new GameSolver();
