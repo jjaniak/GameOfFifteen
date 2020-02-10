@@ -29,7 +29,7 @@ public class GameLauncher {
         printer.append(board.toString());
 
         ArrayList<Board.Movements> moves = solver.solve(copyBoard);
-        if (moves == null) {
+        if ( null == moves) {
             // If the solution is unattainable (the configuration isn't solvable or it's too difficult for now),
             // then -1 will be printed in the file
             printer.append("-1");

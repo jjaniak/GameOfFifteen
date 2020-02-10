@@ -33,6 +33,6 @@ public class OutputTests {
 
         String content = Files.readString(Paths.get(TEST_FILE_PATH));
 
-        assertThat("File is unexpectedly empty", (content != null) && (content.length() > 0));
+        assertThat("File is unexpectedly empty", (null != content) && (content.length() > 0));
     }
 }

@@ -66,7 +66,7 @@ class Board {
         StringBuilder result = new StringBuilder();
 
         for (int[] row : this.configuration) {
-            if (row != null) {
+            if (null != row) {
                 result.append("[ ");
                 for (int col : row) {
                     result.append(col).append(" ");
