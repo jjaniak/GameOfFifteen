@@ -20,8 +20,8 @@ public class GameLauncherTests {
 
     @Test
     public void shouldProperlyPrintNotSolvable() throws IOException {
-        String[] args = new String[] { "invalid" };
-        GameLauncher.main(args);
+        String path = FileReadingTests.class.getClassLoader().getResource("unsolvableConf.txt").getPath();
+        GameLauncher.main(new String[] {path});
 
         String content = Files.readString(Paths.get(OUTPUT_FILE_PATH));
 
