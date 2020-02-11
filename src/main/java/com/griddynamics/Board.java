@@ -222,28 +222,29 @@ class Board {
     static Board readFromFile(String filePath) throws IllegalArgumentException {
         int[][] inputConfiguration = new int[4][4];
         Set<Integer> set = new HashSet<>();
+        int i = 0, j = 0;
+        String[] numbers = new String[0];
 
         try(BufferedReader reader = Files.newBufferedReader(Paths.get(filePath))) {
-            for (int i = 0; i < 4; i++) {
+            for (i = 0; i < 4; i++) {
                 String line = reader.readLine();
                 if (line == null) {
                     throw new IllegalArgumentException("missing lines");
                 }
 
-                String[] numbers = line.split("\\s+");
+                numbers = line.split("\\s+");
                 if (numbers.length != 4) {
                     throw new IllegalArgumentException("there should be 4 numbers in line " + (i+1));
                 }
-                for (int j = 0; j < 4; j++) {
-                    try {
-                        inputConfiguration[i][j] = Integer.parseInt(numbers[j]);
-                        set.add(inputConfiguration[i][j]);
-                    } catch (NumberFormatException e) {
-                        throw new IllegalArgumentException("invalid number in line " + (i+1) + ": " + numbers[j]);
-                    }
+                for (j = 0; j < 4; j++) {
+                    inputConfiguration[i][j] = Integer.parseInt(numbers[j]);
+                    set.add(inputConfiguration[i][j]);
                 }
             }
-        } catch (IOException e) {
+        }
+        catch (NumberFormatException e) {
+            throw new IllegalArgumentException("invalid number in line " + (i+1) + ": " + numbers[j]);
+        }catch (IOException e) {
             LOGGER.severe("Problem with opening file " + e.getMessage());
         }
 
