@@ -44,7 +44,7 @@ class Board {
         }
     }
 
-    private static final Logger LOGGER = Logger.getLogger("com.griddynamics");
+    private static final Logger LOGGER = Logger.getLogger(Board.class.getName());
     private static final List<Integer> expectedValues = Arrays.asList(0, 1, 2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12, 13, 14, 15);
     private int[][] configuration;
 

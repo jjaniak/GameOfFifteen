@@ -12,7 +12,7 @@ import static com.griddynamics.Consts.NEW_LINE;
 class FileOutputProcessor implements OutputProcessor {
     
     private final String filePath;
-    private static final Logger LOGGER = Logger.getLogger("com.griddynamics");
+    private static final Logger LOGGER = Logger.getLogger(FileOutputProcessor.class.getName());
 
 
     FileOutputProcessor(String filePath) {
