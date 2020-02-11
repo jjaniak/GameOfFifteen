@@ -23,7 +23,7 @@ public class GameLauncherTests {
         String path = FileReadingTests.class.getClassLoader().getResource("unsolvableConf.txt").getPath();
         GameLauncher.main(new String[] {path});
 
-        String content = Files.readString(Paths.get(OUTPUT_FILE_PATH));
+        String content = new String(Files.readAllBytes(Paths.get(OUTPUT_FILE_PATH)));
 
         assertThat("File does not contain initial message", content, containsString(INITIAL_CONF_MESSAGE));
 
@@ -35,7 +35,7 @@ public class GameLauncherTests {
     public void shouldProperlyPrintSolvable() throws IOException {
         GameLauncher.main(null);
 
-        String content = Files.readString(Paths.get(OUTPUT_FILE_PATH));
+        String content = new String(Files.readAllBytes(Paths.get(OUTPUT_FILE_PATH)));
 
         assertThat("File does not contain initial message", content, containsString(INITIAL_CONF_MESSAGE));
         assertThat("File does not contain number of moves message", content, containsString(MOVES_NUMBER_MESSAGE));
