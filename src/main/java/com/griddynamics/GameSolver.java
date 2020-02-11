@@ -7,11 +7,8 @@ import static com.griddynamics.Board.Movements;
 
 class GameSolver {
 
-    static final int[][] SOLVED_CONFIGURATION = {
-            { 1,  2,  3,  4},
-            { 5,  6,  7,  8},
-            { 9, 10, 11, 12},
-            {13, 14, 15,  0}};
+    static String path = GameSolver.class.getClassLoader().getResource("solvedConf.txt").getPath();
+    static final int[][] SOLVED_CONFIGURATION = Board.readFromFile(path).getConfiguration();
 
     boolean isGameSolved(Board board) {
         return Arrays.deepEquals(board.getConfiguration(), GameSolver.SOLVED_CONFIGURATION);
