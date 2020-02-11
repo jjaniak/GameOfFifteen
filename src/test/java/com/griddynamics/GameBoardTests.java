@@ -16,14 +16,10 @@ public class GameBoardTests {
 
     @BeforeEach
     public void setup(){
-         conf = new int[][]{
-                {11, 15, 10,  8},
-                { 2,  0,  7,  5},
-                { 9,  4,  1, 12},
-                { 3, 14, 13,  6} };
-         board = new Board(conf);
+        String path = FileReadingTests.class.getClassLoader().getResource("boardTestsConf.txt").getPath();
+        conf = Board.readFromFile(path).getConfiguration();
+        board = new Board(conf);
     }
-
 
     @Test
     public void checkShufflingConfigurationWorks() {
