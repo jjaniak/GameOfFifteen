@@ -8,7 +8,7 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 public class FileReadingTests {
 
     @Test
-    public void shouldCorrectlyReadFile() {
+    public void shouldReadCorrectConfiguration() {
         Board board = new Board(new int[][]{
                 { 1,  2,  3,  4},
                 { 5,  6,  7,  8},
