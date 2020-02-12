@@ -7,6 +7,11 @@ import static org.junit.jupiter.api.Assertions.assertThrows;
 
 public class FileReadingTests {
 
+    private final String folder = "fileReadingTestsConf";
+    private String getResourcePath(String filename) {
+        return FileReadingTests.class.getClassLoader().getResource(folder + "/" + filename).getPath();
+    }
+
     @Test
     public void shouldReadCorrectConfiguration() {
         Board board = new Board(new int[][]{
@@ -15,46 +20,39 @@ public class FileReadingTests {
                 { 9, 10, 11,  0},
                 {13, 15, 14, 12} });
 
-        String path = FileReadingTests.class.getClassLoader().getResource("unsolvableConf.txt").getPath();
-        Board boardReadFromFile = Board.readFromFile(path);
+        Board boardReadFromFile = Board.readFromFile(getResourcePath("unsolvableConf.txt"));
 
         assertEquals(board.toString(), boardReadFromFile.toString());
     }
 
     @Test
     public void shouldThrowErrorWhenMissingLine() {
-        String path = FileReadingTests.class.getClassLoader().getResource("fileReadingTestsConf/missingLinesConf.txt").getPath();
+        Exception e = assertThrows(IllegalArgumentException.class, ()-> Board.readFromFile(getResourcePath("missingLinesConf.txt")));
 
-        Exception e = assertThrows(IllegalArgumentException.class, ()-> Board.readFromFile(path));
         assertEquals("missing lines", e.getMessage());
     }
 
     @Test
     public void shouldThrowErrorWhenMissingNumber() {
-        String path = FileReadingTests.class.getClassLoader().getResource("fileReadingTestsConf/missingNumbersConf.txt").getPath();
+        Exception e = assertThrows(IllegalArgumentException.class, ()-> Board.readFromFile(getResourcePath("missingNumbersConf.txt")));
 
-        Exception e = assertThrows(IllegalArgumentException.class, ()-> Board.readFromFile(path));
         assertEquals("there should be 4 numbers in line 3", e.getMessage());
     }
 
     @Test
     public void shouldThrowErrorWhenNotNumber() {
-        String path1 = FileReadingTests.class.getClassLoader().getResource("fileReadingTestsConf/notNumberConf1.txt").getPath();
+        Exception ex1 = assertThrows(IllegalArgumentException.class, ()-> Board.readFromFile(getResourcePath("notNumberConf1.txt")));
 
-        Exception ex1 = assertThrows(IllegalArgumentException.class, ()-> Board.readFromFile(path1));
         assertEquals("invalid number in line 3: 1,", ex1.getMessage());
 
-        String path2 = FileReadingTests.class.getClassLoader().getResource("fileReadingTestsConf/notNumberConf2.txt").getPath();
+        Exception ex2 = assertThrows(IllegalArgumentException.class, ()-> Board.readFromFile(getResourcePath("notNumberConf2.txt")));
 
-        Exception ex2 = assertThrows(IllegalArgumentException.class, ()-> Board.readFromFile(path2));
         assertEquals("invalid number in line 4: %", ex2.getMessage());
     }
 
     @Test
     public void shouldThrowErrorWhenInvalidNumbers() {
-        String path = FileReadingTests.class.getClassLoader().getResource("fileReadingTestsConf/invalidNumbersConf.txt").getPath();
-
-        Exception e = assertThrows(IllegalArgumentException.class, ()-> Board.readFromFile(path));
+        Exception e = assertThrows(IllegalArgumentException.class, ()-> Board.readFromFile(getResourcePath("invalidNumbersConf.txt")));
         assertEquals("The file must contain all numbers from 0 to 15 inclusive", e.getMessage());
     }
 }
