@@ -241,10 +241,9 @@ class Board {
                     set.add(inputConfiguration[i][j]);
                 }
             }
-        }
-        catch (NumberFormatException e) {
+        } catch (NumberFormatException e) {
             throw new IllegalArgumentException("invalid number in line " + (i+1) + ": " + numbers[j]);
-        }catch (IOException e) {
+        } catch (IOException e) {
             LOGGER.severe("Problem with opening file " + e.getMessage());
         }
 
