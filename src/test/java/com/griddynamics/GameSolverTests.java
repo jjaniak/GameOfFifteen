@@ -11,6 +11,15 @@ import static org.junit.jupiter.api.Assertions.*;
 public class GameSolverTests {
 
     private GameSolver solver = new GameSolver();
+    private final String folder = "gameSolverTestsConf";
+    private final Board unsolvableBoard1 = Board.readFromFile(getResourcePath("unsolvableConf1.txt"));
+    private final Board unsolvableBoard2 = Board.readFromFile(getResourcePath("unsolvableConf2.txt"));
+    private final Board solvableBoard = Board.readFromFile(getResourcePath("solvableConf3.txt"));
+
+    private String getResourcePath(String filename) {
+        return GameSolverTests.class.getClassLoader().getResource(folder + "/" + filename).getPath();
+    }
+
 
     @Test
     public void checkIsGameSolvedMethod() {
@@ -25,101 +34,47 @@ public class GameSolverTests {
 
     @Test
     public void solvableGameShouldBeSolvable() {
-        int[][] conf = new int[][]{
-                {12,  1, 10,  2},
-                { 7, 11,  4, 14},
-                { 5,  0,  9, 15},
-                { 8, 13,  6,  3} };
-
-        Board board1 = new Board(conf);
+        Board board1 = Board.readFromFile(getResourcePath("solvableConf1.txt"));
         assertTrue(solver.isGameSolvable(board1));
 
-        conf = new int[][]{
-                { 1,  2,  3,  4},
-                { 5,  6,  0,  7},
-                { 9, 10, 11,  8},
-                {13, 14, 15, 12}};
-
-        Board board2 = new Board(conf);
+        Board board2 = Board.readFromFile(getResourcePath("solvableConf2.txt"));
         assertTrue(solver.isGameSolvable(board2));
     }
 
     @Test
     public void notSolvableGameShouldNotBeSolvable() {
-        int[][] conf = new int[][]{
-                { 1,  2,  3,  4},
-                { 5,  6,  7,  8},
-                { 9, 10, 11,  0},
-                {13, 15, 14, 12} };
+        assertFalse(solver.isGameSolvable(unsolvableBoard1));
 
-        Board board1 = new Board(conf);
-        assertFalse(solver.isGameSolvable(board1));
-
-        conf = new int[][]{
-                {12,  1, 10,  2},
-                { 7, 11,  4, 14},
-                { 5,  9, 15,  8},
-                { 0, 13,  6,  3} };
-
-        Board board2 = new Board(conf);
-        assertFalse(solver.isGameSolvable(board2));
+        assertFalse(solver.isGameSolvable(unsolvableBoard2));
     }
 
     @Test
     public void shouldNotSolveWhenImpossible() {
-        int[][] conf1 = new int[][] {
-                { 1,  2,  3,  4},
-                { 5,  6,  7,  8},
-                { 9, 10, 11,  0},
-                {13, 15, 14, 12} };
-
-        Board board1 = new Board(conf1);
-        ArrayList<Movements> moves1 = solver.solve(board1);
-
+        ArrayList<Movements> moves1 = solver.solve(unsolvableBoard1);
         assertNull(moves1);
 
-        int[][] conf2 = new int[][] {
-                { 1,  2,  7,  3},
-                { 5,  0,  6,  4},
-                { 9, 10, 11,  8},
-                {13, 15, 14, 12} };
-
-        Board board2 = new Board(conf2);
-        ArrayList<Movements> moves2 = solver.solve(board2);
-
+        ArrayList<Movements> moves2 = solver.solve(unsolvableBoard2);
         assertNull(moves2);
     }
 
     @Test
     public void shouldSolveGame() {
         // this is a simplified board configuration (not extremely shuffled) which the application can solve for sure
-        Board board = new Board(new int[][]{
-                { 1,  0,  2,  4},
-                { 5,  7,  3,  8},
-                { 9,  6, 10, 11},
-                {13, 14, 15, 12}});
-
-        ArrayList<Movements> moves = solver.solve(board);
+        ArrayList<Movements> moves = solver.solve(solvableBoard);
 
         assertNotEquals(null, moves);
-        assertTrue(solver.isGameSolved(board));
+        assertTrue(solver.isGameSolved(solvableBoard));
     }
 
     @Test
     public void returnedMovesShouldBeValid() {
-        Board easyBoard = new Board(new int[][]{
-                { 1,  0,  2,  4},
-                { 5,  7,  3,  8},
-                { 9,  6, 10, 11},
-                {13, 14, 15, 12}});
-
-        Board copyBoard = new Board(easyBoard.getConfiguration());
+        Board copyBoard = new Board(solvableBoard.getConfiguration());
         ArrayList<Movements> moves = solver.solve(copyBoard);
 
         for (Movements m : moves) {
-            boolean isValid = easyBoard.move(m);
+            boolean isValid = solvableBoard.move(m);
             assertTrue(isValid);
         }
-        assertTrue(solver.isGameSolved(easyBoard));
+        assertTrue(solver.isGameSolved(solvableBoard));
     }
 }
